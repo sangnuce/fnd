@@ -2,6 +2,7 @@
   session_start();
   date_default_timezone_set('Asia/Ho_Chi_Minh');
   require_once('db.php');
+  require_once('helpers/application_helper.php');
 
   if (isset($_GET['controller'])) {
     $controller = $_GET['controller'];
@@ -14,10 +15,6 @@
     $controller = 'pages';
     $action = 'home';
   }
-
-  ob_start();
+  $namespace = @$_GET['namespace'];
   require_once('routes.php');
-  $content = ob_get_clean();
-
-  require_once('views/layouts/application.php');
 ?>
