@@ -1,0 +1,23 @@
+.custom-navbar {
+  background: #D60808;
+  border: none;
+}
+
+.custom-navbar .logo {
+  background: #F9B700;
+  color: #FFF;
+}
+
+.custom-navbar .navbar-nav li a {
+  color: #FFF;
+}
+
+.custom-navbar .navbar-nav li a:hover {
+  background: #F9B700;
+  color: #D60808;
+}
+
+.footer {
+  border-top: 1px solid #000;
+  padding: 15px 0;
+}
