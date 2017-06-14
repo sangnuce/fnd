@@ -31,7 +31,7 @@
             </li>
             <li class="divider"></li>
             <li>
-              <a href="#">
+              <a href="index.php?controller=sessions&action=destroySession">
                 <i class="fa fa-sign-out"></i>
                 <span>Đăng xuất</span>
               </a>

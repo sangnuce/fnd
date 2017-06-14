@@ -1,5 +1,5 @@
 <header class="navbar navbar-inverse navbar-fixed-top custom-navbar">
-  <div class="container">
+  <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#my-navbar">
         <span class="icon-bar"></span>
@@ -14,8 +14,15 @@
         <li><a href="#">Help</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><i class="fa fa-user"></i> Sign Up</a></li>
-        <li><a href="#"><i class="fa fa-sign-in"></i> Login</a></li>
+        <?php if (logged_in()) { ?>
+          <?php if (is_admin()) { ?>
+            <li><a href="index.php?namespace=admin"><i class="fa fa-cogs"></i> Quản lý</a></li>
+          <?php } ?>
+          <li><a href="index.php?controller=sessions&action=destroySession"><i class="fa fa-sign-out"></i> Đăng xuất</a></li>
+        <?php } else { ?>
+          <li><a href="#"><i class="fa fa-user"></i> Đăng ký</a></li>
+          <li><a href="index.php?controller=sessions&action=newSession"><i class="fa fa-sign-in"></i> Đăng nhập</a></li>
+        <?php } ?>
       </ul>
     </div>
   </div>
