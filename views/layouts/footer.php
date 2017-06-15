@@ -1,5 +1,5 @@
-<div class="container">
   <div class="footer col-xs-12 col-sm-12 col-md-12">
+  <div class="container">
     <div class="col-md-6 col-xs-12 infor item-footer">
       <h4 class="title-item-footer">FoodnDrink</h4>
       <p>Nhà 10 ngách 14, ngõ 156 phố Hồng Mai, quận Hai Bà Trưng, tp Hà Nội.</p>
@@ -18,8 +18,9 @@
         <br>
         Mang cả tâm tình trong từng sản phẩm. </p>
     </div>
-    <div class="copyright col-md-12 col-xs-12">
+   
+  </div>
+   <div class="copyright col-md-12 col-xs-12">
       <h5>Copyright@2017 Team ADS</h5>
     </div>
   </div>
-</div>
