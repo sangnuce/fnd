@@ -18,7 +18,7 @@
   </head>
   <body>
     <?php include_once('views/layouts/header.php') ?>
-    <div class="container-fluid content-container">
+    <div class="container content-container">
       <?php include_once('views/shareds/message.php') ?>
       <?= @$content ?>
     </div>

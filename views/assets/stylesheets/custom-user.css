@@ -1,5 +1,5 @@
 body {
-  padding: 50px 0 51px;
+  padding: 50px 0 0;
 }
 
 .custom-navbar {
@@ -27,7 +27,7 @@ body {
 
 .footer {
   border-top: 1px solid #000;
-  padding: 15px 0;
+  padding: 15px 0 0;
   background: #FFF;
 }
 
@@ -59,4 +59,222 @@ body {
 
 .message {
   margin: 0;
+}
+
+*{
+  margin: 0px;
+  padding:0px;
+}
+
+/*Header*/
+.main-menu{
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+/*search-cart*/
+.main-menu .search-cart{
+  margin-top: 10px;
+}
+/*search*/
+.search-cart .search input{
+  border-radius: 0px;
+  box-shadow: none !important;
+  max-height: 30px;
+}
+/*cart*/
+.search-cart{
+  padding-right: 0px;
+  padding-left: 0px;
+}
+.search-cart .cart{
+  padding: 2px 6px;
+  background-color:#de4a4a;
+}
+.search-cart .cart .fa-shopping-cart{
+  padding-right: 6px;
+  font-size: 24px;
+  color: #fff;
+}
+.search-cart .cart .txt-add-cart{
+  color: #fff;
+  font-size: 14px;
+  margin-top: -4px;
+}
+
+/*menu*/
+.main-menu .menu{
+  border-top: 1px solid #ddd;
+  padding-right: 0px;
+  padding-left: 0px;
+}
+.main-menu .menu nav{
+  padding-right: 0px;
+  padding-left: 0px;
+}
+.main-menu .menu nav #menu .navbar-right li a{
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size:14px;
+  line-height:18px;
+    color: #777777;
+    background-color: transparent;
+    padding-right: 0px;
+}
+.main-menu .menu nav #menu .navbar-right li a:hover,
+.main-menu .menu nav #menu .navbar-right li a:focus{
+  background-color: transparent;
+    color: #ff426f;
+}
+
+/*Main-content*/
+.main-content{
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 30px;
+}
+/*Slider*/
+.main-content .slider{
+  padding-right: 0px;
+  padding-left: 0px;
+}
+.main-content .slider .lst-slider li{
+  list-style-type: none;
+  margin-top: 22px;
+}
+.main-content .slider .lst-slider li img{
+  width: 100%;
+}
+.main-content .slider .zoom-slide-img{
+  margin-top: 22px;
+}
+.main-content .slider .zoom-slide-img img{
+  width: 100%;
+  height: 100%;
+}
+
+/*side-bar*/
+.side-bar .category{
+  padding-right: 0px;
+  padding-left: 0px;
+}
+.side-bar .category .title-cat h5{
+  /*background-color: #9de0d0;*/
+  background-color: #01b3ad;
+  font-family: 'PT Serif', serif;
+    font-size: 14px;
+    line-height: 1.2em;
+    text-transform: uppercase;
+    color: #fff;
+    padding: 15px 18px 16px;
+    margin-bottom: 27px;
+}
+.side-bar .category .lst-cat{
+  margin-top: -20px;
+}
+.side-bar .category .lst-cat ul li{
+  list-style-type: none;
+  padding: 6px 30px;
+  border-bottom: 1px dotted #ddd;
+}
+.side-bar .category .lst-cat ul li a{
+  font-size: 13px;
+  color: #606060;
+}
+.side-bar .category .lst-cat ul li a .fa-chevron-right{
+  font-size: 10px;
+  padding-right: 6px;
+}
+.side-bar .category .lst-cat ul li a:hover,
+.side-bar .category .lst-cat ul li a:focus{
+  color: #66baa6;
+  text-decoration: none;
+}
+
+/*Danh sách sản phẩm*/
+.title-lst{
+  color: #01b3ad;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 600;
+}
+.title-lst .fa-hand-o-right{
+  padding-right: 6px;
+}
+.title-lst:after{
+    content: "";
+    background: #01b3ad;
+    display: block;
+    height: 3px;
+    margin-top: 6px;
+    width: 50px;
+    bottom: 0;
+}
+.detail-cat{
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-top: 20px;
+}
+.lst-product .detail-cat .detail-item{
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-top: 10px;
+}
+.lst-product .detail-cat .detail-item .item .infor-product{
+  background-color: #F1ECD8;
+  padding-bottom: 10px;
+}
+.infor-product .name-item{   
+  color: #333;
+  margin: 6px 3px 3px;
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1.5;
+    padding-bottom: 5px;
+    text-decoration: none;
+}
+.infor-product .price-item{
+  color: #922646;
+  margin: 3px;
+    font-size: 14px;
+    text-decoration: none;
+}
+.infor-product .btn-add-cart{
+  background-color: #01b3ad;
+    color: #fff;
+    display: inline-block;
+    font-size: 13px;
+    margin-top: 5px;
+    padding: 3px 6px;
+    border-radius: 0px;
+    border: 0px;
+}
+.infor-product .btn-add-cart:hover,
+.infor-product .btn-add-cart:focus{
+  border-radius: 0px;
+  border: 0px;
+  background-color: #9DE0D0;
+}
+
+
+/*Footer*/
+.footer{
+  border-top: 1px solid #ddd;
+  padding-right: 0px;
+  padding-left: 0px;
+}
+.item-footer .title-item-footer{
+  color: #01b3ad;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 600;
+}
+.copyright{
+  text-align: center;
+  border-top: 1px solid #ddd;
+  background-color: #373737;
+  color: #fafafa;
+  padding-right: 0px;
+  padding-left: 0px;
 }
