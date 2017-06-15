@@ -21,6 +21,10 @@ body {
   color: #D60808;
 }
 
+.custom-navbar .navbar-brand:hover {
+  background: #136eb4;
+}
+
 .footer {
   border-top: 1px solid #000;
   padding: 15px 0;

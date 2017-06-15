@@ -1,12 +1,18 @@
 <?php
   class User {
     public $id;
+    public $email;
     public $name;
+    public $phone;
+    public $activated;
     public $is_admin;
 
-    public function __construct($id, $name, $is_admin = null) {
+    public function __construct($id, $email, $name, $phone, $activated, $is_admin = null) {
       $this->id = $id;
+      $this->email = $email;
       $this->name = $name;
+      $this->phone = $phone;
+      $this->activated = $activated;
       $this->is_admin = $is_admin;
     }
 
@@ -16,7 +22,7 @@
       $req = $db->query('SELECT * FROM users');
 
       foreach($req->fetchAll() as $item) {
-        $list[] = new User($item['id'], $item['name'], $item['is_admin']);
+        $list[] = new User($item['id'], $item['email'], $item['name'], $item['phone'], $item['activated'], $item['is_admin']);
       }
 
       return $list;
@@ -28,7 +34,7 @@
       $req->execute(array('id' => $id));
       $item = $req->fetch();
       if (isset($item['id'])) {
-        return new User($item['id'], $item['name'], $item['is_admin']);
+        return new User($item['id'], $item['email'], $item['name'], $item['phone'], $item['activated'], $item['is_admin']);
       }
       return null;
     }
@@ -39,7 +45,7 @@
       $req->execute(array('email' => $email, 'password' => md5($password)));
       $item = $req->fetch();
       if (isset($item['id'])) {
-        return new User($item['id'], $item['name'], $item['is_admin']);
+        return new User($item['id'], $item['email'], $item['name'], $item['phone'], $item['activated'], $item['is_admin']);
       }
       return null;
     }

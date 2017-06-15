@@ -12,11 +12,13 @@
     <link rel="stylesheet" href="views/assets/stylesheets/font-awesome.min.css">
     <link rel="stylesheet" href="views/assets/stylesheets/AdminLTE.min.css">
     <link rel="stylesheet" href="views/assets/stylesheets/skin-blue.css">
+    <link rel="stylesheet" href="views/assets/stylesheets/datatables.min.css">
     <link rel="stylesheet" href="views/assets/stylesheets/custom-admin.css">
 
     <script src="views/assets/javascripts/jquery-2.2.3.min.js"></script>
     <script src="views/assets/javascripts/bootstrap.min.js"></script>
     <script src="views/assets/javascripts/app.min.js"></script>
+    <script src="views/assets/javascripts/datatables.min.js"></script>
     <script src="views/assets/javascripts/custom.js"></script>
   </head>
   <body class="skin-blue sidebar-mini">

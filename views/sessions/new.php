@@ -4,7 +4,7 @@
   </div>
 
   <div class="login-box-body">
-    <form action="index.php?controller=sessions&action=createSession" method="post">
+    <form action="<?= get_route('sessions', 'createSession') ?>" method="post">
       <div class="form-group">
         <label>Email:</label>
         <div class="input-group">
