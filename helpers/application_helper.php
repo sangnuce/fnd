@@ -16,7 +16,7 @@
   }
 
   function current_user() {
-    return unserialize($_SESSION['user']);
+    return unserialize(@$_SESSION['user']);
   }
 
   function display_title($title) {
@@ -24,5 +24,25 @@
       return $title . ' - Food and Drink';
     }
     return 'Food and Drink';
+  }
+
+  function redirect_to($route) {
+    header("Location: $route");
+    exit;
+  }
+
+  function get_route($controller, $action, $namespace = null) {
+    if ($namespace) {
+      return "index.php?namespace=$namespace&controller=$controller&action=$action";
+    }
+    return "index.php?controller=$controller&action=$action";
+  }
+
+  function root($namespace = null) {
+    $url = 'index.php';
+    if ($namespace) {
+      $url = $url . "?namespace=$namespace";
+    }
+    return $url;
   }
 ?>

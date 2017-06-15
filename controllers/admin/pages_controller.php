@@ -1,10 +1,7 @@
 <?php
   class PagesController extends BaseController {
     function __construct() {
-      $this->check_login();
-      $this->check_admin();
-
-      $this->namespace = 'admin';
+      parent::__construct('admin');
       $this->folder = 'pages';
     }
 

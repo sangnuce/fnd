@@ -15,8 +15,7 @@
       if ($user != null) {
         $_SESSION['user'] = serialize($user);
         $_SESSION['message'] = array('class' => 'success', 'content' => 'Đăng nhập thành công!');
-        header('Location: index.php');
-        exit;
+        redirect_to(root());
       }
 
       $_SESSION['message'] = array('class' => 'danger', 'content' => 'Đăng nhập thất bại!');
@@ -27,10 +26,8 @@
       if (logged_in()) {
         unset($_SESSION['user']);
         $_SESSION['message'] = array('class' => 'info', 'content' => 'Bạn vừa đăng xuất khỏi hệ thống!');
-        header('Location: index.php?controller=sessions&action=newSession');
-        exit;
       }
-      header('Location: index.php?controller=sessions&action=newSession');
+      redirect_to(get_route('sessions', 'newSession'));
     }
   }
 ?>

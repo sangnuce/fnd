@@ -1,5 +1,5 @@
 <header class="main-header">
-  <a href="#" class="logo">
+  <a href="<?= root('admin') ?>" class="logo">
     <span class="logo-mini">
       <b class="logo-highlight">F</b>n<b class="logo-highlight">D</b>
     </span>
@@ -19,7 +19,7 @@
       <ul class="nav navbar-nav">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-            <span>Alexander Pierce</span>
+            <span><?= current_user()->name ?></span>
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
@@ -31,7 +31,7 @@
             </li>
             <li class="divider"></li>
             <li>
-              <a href="index.php?controller=sessions&action=destroySession">
+              <a href="<?= get_route('sessions', 'destroySession') ?>">
                 <i class="fa fa-sign-out"></i>
                 <span>Đăng xuất</span>
               </a>
