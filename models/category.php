@@ -4,13 +4,13 @@
     public $name;
     public $parent_id;
 
-    public function __construct($id, $name, $parent_id) {
+    function __construct($id, $name, $parent_id) {
       $this->id = $id;
       $this->name = $name;
       $this->parent_id = $parent_id;
     }
 
-    public static function all() {
+    static function all() {
       $list = [];
       $db = DB::getInstance();
       $req = $db->query('SELECT * FROM categories');
@@ -22,7 +22,7 @@
       return $list;
     }
 
-    public static function find($id) {
+    static function find($id) {
       $db = DB::getInstance();
       $req = $db->prepare('SELECT * FROM categories WHERE id = :id');
       $req->execute(array('id' => $id));

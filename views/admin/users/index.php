@@ -1,5 +1,8 @@
 <section class="content-header">
-  <h1>Quản lý người dùng</h1>
+  <div class="title">
+    <span>Quản lý người dùng</span>
+    <a href="<?= get_route('users', 'newUser', 'admin') ?>" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Thêm mới</a>
+  </div>
 </section>
 
 <section class="content">
@@ -11,22 +14,25 @@
             <th>Tên</th>
             <th>Email</th>
             <th>Số điện thoại</th>
+            <th>Vai trò</th>
             <th>Trạng thái</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           <?php foreach ($users as $user) { ?>
+            <?php if ($user->id == current_user()->id) continue; ?>
             <tr>
               <td><?= $user->name ?></td>
               <td><?= $user->email ?></td>
               <td><?= $user->phone ?></td>
-              <td class="<?= $user->activated ? 'bg-success' : 'bg-danger' ?>"><?= $user->activated ? 'Đang hoạt động' : 'Khóa hoạt động' ?></td>
+              <td><?= $user->is_admin ? 'Quản trị viên' : 'Người dùng' ?></td>
+              <td class="<?= $user->activated ? 'bg-success' : 'bg-danger' ?>"><?= $user->activated ? 'Kích hoạt' : 'Không kích hoạt' ?></td>
               <td class="text-center">
-                <a href="<?= get_route('users', 'editUser') ?>&id=<?= $user->id ?>">
+                <a href="<?= get_route('users', 'editUser', 'admin', array('id' => $user->id)) ?>">
                   <button class="btn btn-info"><i class="fa fa-pencil"></i></button>
                 </a>
-                <a href="<?= get_route('users', 'destroyUser') ?>&id=<?= $user->id ?>"
+                <a href="<?= get_route('users', 'destroyUser', 'admin', array('id' => $user->id)) ?>"
                   onClick="return confirm('Xác nhận xóa?')">
                   <button class="btn btn-danger"><i class="fa fa-remove"></i></button>
                 </a>
@@ -44,7 +50,7 @@
     $('.datatable').DataTable({
       'aaSorting': [],
       'columnDefs': [
-        {'targets': 4, 'orderable': false}
+        {'targets': 5, 'orderable': false}
       ]
     });
   });
