@@ -19,13 +19,15 @@
 
     protected function check_login() {
       if (!logged_in()) {
-        header('Location: index.php?controller=sessions&action=new');
+        $_SESSION['message'] = array('class' => 'warning', 'content' => 'Bạn chưa đăng nhập!');
+        header('Location: index.php?controller=sessions&action=newSession');
         exit;
       }
     }
 
     protected function check_admin() {
       if (!is_admin()) {
+        $_SESSION['message'] = array('class' => 'warning', 'content' => 'Bạn không có quyền truy cập trang này!');
         header('Location: index.php');
         exit;
       }
