@@ -31,11 +31,15 @@
     exit;
   }
 
-  function get_route($controller, $action, $namespace = null) {
-    if ($namespace) {
-      return "index.php?namespace=$namespace&controller=$controller&action=$action";
+  function get_route($controller, $action, $namespace = null, $params = array()) {
+    $namespace_param = $namespace ? "namespace=$namespace&" : '';
+    $url = "index.php?{$namespace_param}controller=$controller&action=$action";
+    if (!empty($params)) {
+      foreach ($params as $key => $value) {
+        $url .= "&$key=$value";
+      }
     }
-    return "index.php?controller=$controller&action=$action";
+    return $url;
   }
 
   function root($namespace = null) {
