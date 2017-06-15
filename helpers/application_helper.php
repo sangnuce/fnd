@@ -2,10 +2,10 @@
   require_once 'models/user.php';
 
   function logged_in() {
-    if (current_user() == null) {
-      return false;
+    if (current_user()) {
+      return true;
     }
-    return true;
+    return false;
   }
 
   function is_admin() {
@@ -16,7 +16,7 @@
   }
 
   function current_user() {
-    return User::find($_SESSION['user_id']);
+    return unserialize($_SESSION['user']);
   }
 
   function display_title($title) {
