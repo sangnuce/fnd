@@ -1,5 +1,5 @@
 <DOCTYPE html>
-<html>
+  <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,14 +22,14 @@
     <script src="views/assets/javascripts/custom.js"></script>
   </head>
   <body class="skin-blue sidebar-mini">
-    <div class="wrapper">
-      <?php include_once('views/admin/layouts/header.php') ?>
-      <?php include_once('views/admin/layouts/sidebar.php') ?>
-      <div class="content-wrapper">
-        <?php include_once('views/shareds/message.php') ?>
-        <?= @$content ?>
-      </div>
-      <?php include_once('views/admin/layouts/footer.php') ?>
+  <div class="wrapper">
+    <?php include_once('views/admin/layouts/header.php') ?>
+    <?php include_once('views/admin/layouts/sidebar.php') ?>
+    <div class="content-wrapper">
+      <?php include_once('views/shareds/message.php') ?>
+      <?= @$content ?>
     </div>
+    <?php include_once('views/admin/layouts/footer.php') ?>
+  </div>
   <body>
-<html>
+  <html>

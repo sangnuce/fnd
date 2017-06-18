@@ -31,8 +31,13 @@
           <div class="form-group">
             <label>Trạng thái</label>
             <div class="form-control">
-              <label><input type="radio" name="activated" value="1" <?= @$_POST['activated'] ? 'checked' : '' ?>> Kích hoạt</label>&nbsp;
-              <label><input type="radio" name="activated" value="0" <?= @$_POST['activated'] ? '' : 'checked' ?>> Không kích hoạt</label>
+              <label>
+                <input type="radio" name="activated" value="1" <?= @$_POST['activated'] ? 'checked' : '' ?>> Kích hoạt
+              </label>&nbsp;
+              <label>
+                <input type="radio" name="activated" value="0" <?= @$_POST['activated'] ? '' : 'checked' ?>> Không kích
+                hoạt
+              </label>
             </div>
           </div>
           <div class="text-right">
