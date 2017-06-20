@@ -84,6 +84,20 @@ class Category
     return $list;
   }
 
+  function getInStockProducts()
+  {
+    $list = [];
+    $db = DB::getInstance();
+    $req = $db->prepare('SELECT * FROM products WHERE status=1 AND category_id=:category_id');
+    $req->execute(array('category_id' => $this->id));
+
+    foreach ($req->fetchAll() as $item) {
+      $list[] = new Product($item['id'], $item['name'], $item['price'], $item['description'], $item['category_id'], $item['status']);
+    }
+
+    return $list;
+  }
+
   static function getRootCategories()
   {
     $list = [];

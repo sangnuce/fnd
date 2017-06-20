@@ -20,5 +20,3 @@ class PagesController extends BaseController
     $this->render('error');
   }
 }
-
-?>
