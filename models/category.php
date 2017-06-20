@@ -1,4 +1,5 @@
 <?php
+require_once('models/product.php');
 
 class Category
 {
@@ -68,6 +69,31 @@ class Category
     if ($parent) return $parent->name;
     return '';
   }
-}
 
-?>
+  function getProducts()
+  {
+    $list = [];
+    $db = DB::getInstance();
+    $req = $db->prepare('SELECT * FROM products WHERE category_id=:category_id');
+    $req->execute(array('category_id' => $this->id));
+
+    foreach ($req->fetchAll() as $item) {
+      $list[] = new Product($item['id'], $item['name'], $item['price'], $item['description'], $item['category_id'], $item['status']);
+    }
+
+    return $list;
+  }
+
+  static function getRootCategories()
+  {
+    $list = [];
+    $db = DB::getInstance();
+    $req = $db->query('SELECT * FROM categories WHERE parent_id=0');
+
+    foreach ($req->fetchAll() as $item) {
+      $list[] = new Category($item['id'], $item['name'], $item['parent_id']);
+    }
+
+    return $list;
+  }
+}

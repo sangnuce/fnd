@@ -18,7 +18,7 @@ class CategoriesController extends BaseController
 
   function newCategory()
   {
-    $categories = Category::all();
+    $categories = Category::getRootCategories();
     $data = array('title' => 'Thêm mới danh mục sản phẩm', 'categories' => $categories);
     $this->render('new', $data);
   }
@@ -31,7 +31,7 @@ class CategoriesController extends BaseController
       $_SESSION['message'] = array('class' => 'success', 'content' => 'Thêm mới danh mục sản phẩm thành công');
       redirect_to(get_route('categories', 'index', 'admin'));
     } else {
-      $categories = Category::all();
+      $categories = Category::getRootCategories();
       $_SESSION['message'] = array('class' => 'danger', 'content' => 'Thêm mới danh mục sản phẩm thất bại');
       $data = array('title' => 'Thêm mới danh mục sản phẩm', 'categories' => $categories);
       $this->render('new', $data);
@@ -40,7 +40,7 @@ class CategoriesController extends BaseController
 
   function editCategory()
   {
-    $categories = Category::all();
+    $categories = Category::getRootCategories();
     $category = Category::find($_GET['id']);
     $data = array('category' => $category, 'title' => 'Sửa danh mục sản phẩm', 'categories' => $categories);
     $this->render('edit', $data);
@@ -56,7 +56,7 @@ class CategoriesController extends BaseController
       $_SESSION['message'] = array('class' => 'success', 'content' => 'Sửa danh mục sản phẩm thành công');
       redirect_to(get_route('categories', 'index', 'admin'));
     } else {
-      $categories = Category::all();
+      $categories = Category::getRootCategories();
       $_SESSION['message'] = array('class' => 'danger', 'content' => 'Sửa danh mục sản phẩm thất bại');
       $data = array('title' => 'Sửa danh mục sản phẩm', 'categories' => $categories, 'category' => $item);
       $this->render('edit', $data);
