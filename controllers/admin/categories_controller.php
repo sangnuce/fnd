@@ -25,7 +25,7 @@ class CategoriesController extends BaseController
 
   function createCategory()
   {
-    $item = new Category(NULL, $_POST['name'], $_POST['parent_id']);
+    $item = new Category(NULL, @$_POST['name'], @$_POST['parent_id']);
     $rs = Category::insert($item);
     if ($rs) {
       $_SESSION['message'] = array('class' => 'success', 'content' => 'Thêm mới danh mục sản phẩm thành công');
@@ -49,8 +49,8 @@ class CategoriesController extends BaseController
   public function updateCategory()
   {
     $item = Category::find($_GET['id']);
-    $item->name = $_POST['name'];
-    $item->parent_id = $_POST['parent_id'];
+    $item->name = @$_POST['name'];
+    $item->parent_id = @$_POST['parent_id'];
     $rs = Category::update($item);
     if ($rs) {
       $_SESSION['message'] = array('class' => 'success', 'content' => 'Sửa danh mục sản phẩm thành công');

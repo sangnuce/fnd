@@ -21,7 +21,7 @@
       $controller_file = 'controllers/' . $controller . '_controller.php';
     }
     include_once($controller_file);
-    $klass = ucwords($controller, '_') . 'Controller';
+    $klass = str_replace('_', '', ucwords($controller, '_')) . 'Controller';
     $controller = new $klass;
     $controller->$action();
   }

@@ -57,4 +57,28 @@ function root($namespace = null)
   return $url;
 }
 
-?>
+function renderProductImages($images)
+{
+  $html = '<div class="row">';
+  foreach ($images as $image) {
+    $html .= '<div class="col-md-3">
+      <div class="product-image">
+        <span class="delete-image" data-id="' . $image->id . '"><i class="fa fa-remove"></i></span>
+        <img src="' . $image->image . '">
+       </div>
+     </div>';
+  }
+  $html .= '</div>';
+  return $html;
+}
+
+function remove_dir($path) {
+  if (is_dir($path)) {
+    $files = array_diff(scandir($path), array('.', '..'));
+    foreach ($files as $file) {
+      unlink(realpath($path) . '/' . $file);
+    }
+    return rmdir($path);
+  }
+  return null;
+}

@@ -24,7 +24,7 @@ class UsersController extends BaseController
 
   public function createUser()
   {
-    $item = new User(null, $_POST['email'], md5('123456'), $_POST['name'], $_POST['phone'], $_POST['activated'], $_POST['is_admin']);
+    $item = new User(null, @$_POST['email'], md5('123456'), @$_POST['name'], @$_POST['phone'], @$_POST['activated'], @$_POST['is_admin']);
     $rs = User::insert($item);
     if ($rs) {
       $_SESSION['message'] = array('class' => 'success', 'content' => 'Thêm mới người dùng thành công');
@@ -46,11 +46,11 @@ class UsersController extends BaseController
   public function updateUser()
   {
     $item = User::find($_GET['id']);
-    $item->email = $_POST['email'];
-    $item->name = $_POST['name'];
-    $item->phone = $_POST['phone'];
-    $item->activated = $_POST['activated'];
-    $item->is_admin = $_POST['is_admin'];
+    $item->email = @$_POST['email'];
+    $item->name = @$_POST['name'];
+    $item->phone = @$_POST['phone'];
+    $item->activated = @$_POST['activated'];
+    $item->is_admin = @$_POST['is_admin'];
     $rs = User::update($item);
     if ($rs) {
       $_SESSION['message'] = array('class' => 'success', 'content' => 'Sửa thông tin người dùng thành công');
