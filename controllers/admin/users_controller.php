@@ -61,17 +61,6 @@ class UsersController extends BaseController
       $this->render('edit', $data);
     }
   }
-
-  public function destroyUser()
-  {
-    $item = User::find($_GET['id']);
-    if (User::destroy($item)) {
-      $_SESSION['message'] = array('class' => 'success', 'content' => 'Xoá người dùng thành công');
-    } else {
-      $_SESSION['message'] = array('class' => 'danger', 'content' => 'Không thể xoá người dùng');
-    }
-    redirect_to(get_route('users', 'index', 'admin'));
-  }
 }
 
 ?>

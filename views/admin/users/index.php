@@ -22,8 +22,7 @@
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($users as $user) { ?>
-          <?php if ($user->id == current_user()->id) continue; ?>
+        <?php foreach ($users as $user) { ?><?php if ($user->id == current_user()->id) continue; ?>
           <tr>
             <td><?= $user->name ?></td>
             <td><?= $user->email ?></td>
@@ -35,9 +34,6 @@
             <td class="text-center">
               <a href="<?= get_route('users', 'editUser', 'admin', array('id' => $user->id)) ?>">
                 <button class="btn btn-info"><i class="fa fa-pencil"></i></button>
-              </a>
-              <a href="<?= get_route('users', 'destroyUser', 'admin', array('id' => $user->id)) ?>" onClick="return confirm('Xác nhận xóa?')">
-                <button class="btn btn-danger"><i class="fa fa-remove"></i></button>
               </a>
             </td>
           </tr>
