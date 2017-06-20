@@ -19,7 +19,6 @@
             <select class="form-control" name="parent_id" id="parent_id">
               <option value="0">Chọn danh mục</option>
               <?php foreach ($categories as $select_category) { ?>
-                <?php if ($select_category->id == $category->id) continue; ?>
                 <option value="<?= $select_category->id ?>" <?= $select_category->id == (@$_POST['parent_id'] ? $_POST['parent_id'] : $category->parent_id) ? 'selected' : '' ?>>
                   <?= $select_category->name ?>
                 </option>

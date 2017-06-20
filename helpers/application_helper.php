@@ -82,3 +82,11 @@ function remove_dir($path) {
   }
   return null;
 }
+
+function getProductFirstImage($product) {
+  $images = $product->getImages();
+  if(count($images) > 0) {
+    return $images[0]->image;
+  }
+  return 'views/assets/images/no-image.png';
+}

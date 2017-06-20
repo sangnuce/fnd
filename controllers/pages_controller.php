@@ -1,4 +1,5 @@
 <?php
+require_once('models/category.php');
 
 class PagesController extends BaseController
 {
@@ -9,7 +10,9 @@ class PagesController extends BaseController
 
   public function home()
   {
-    $this->render('home');
+    $categories = Category::all();
+    $data = array('categories' => $categories);
+    $this->render('home', $data);
   }
 
   public function error()

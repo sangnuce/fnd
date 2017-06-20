@@ -1,5 +1,5 @@
 <header class="navbar navbar-inverse navbar-fixed-top custom-navbar">
-  <div class="container-fluid">
+  <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#my-navbar">
         <span class="icon-bar"></span>
@@ -13,20 +13,23 @@
         <li><a href="#">About</a></li>
         <li><a href="#">Help</a></li>
       </ul>
-      <ul class="nav navbar-nav">
-        <div class="form-group search">
-          <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm">
-        </div>
-        <div class="cart">
-          <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-          <span class="txt-add-cart">Có 0 sản phẩm trong giỏ hàng</span>
-        </div>
-      </ul>
+
+      <div class="col-sm-3 col-md-3">
+        <form class="navbar-form" role="search">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search" name="q">
+            <div class="input-group-btn">
+              <button class="btn btn-default" type="submit">
+                <i class="glyphicon glyphicon-search head-search-icon"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
       <ul class="nav navbar-nav navbar-right">
-        <?php if (logged_in()) { ?>
-          <?php if (is_admin()) { ?>
-            <li><a href="<?= root('admin') ?>"><i class="fa fa-cogs"></i> Quản lý</a></li>
-          <?php } ?>
+        <?php if (logged_in()) { ?><?php if (is_admin()) { ?>
+          <li><a href="<?= root('admin') ?>"><i class="fa fa-cogs"></i> Quản lý</a></li>
+        <?php } ?>
           <li><a href="<?= get_route('sessions', 'destroySession') ?>"><i class="fa fa-sign-out"></i> Đăng xuất</a></li>
         <?php } else { ?>
           <li><a href="#"><i class="fa fa-user"></i> Đăng ký</a></li>
