@@ -39,5 +39,3 @@ class SessionsController extends BaseController
     redirect_to(get_route('sessions', 'newSession'));
   }
 }
-
-?>

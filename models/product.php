@@ -95,4 +95,21 @@ class Product
 
     return $list;
   }
+
+  function getRelateProducts($num)
+  {
+    $list = [];
+    $db = DB::getInstance();
+    $req = $db->prepare('SELECT * FROM products WHERE status=1 AND category_id=:category_id AND id<>:id ORDER BY RAND() LIMIT :num');
+    $req->bindValue(':category_id', $this->category_id);
+    $req->bindValue(':id', $this->id);
+    $req->bindValue(':num', $num, PDO::PARAM_INT);
+    $req->execute();
+
+    foreach ($req->fetchAll() as $item) {
+      $list[] = new Product($item['id'], $item['name'], $item['price'], $item['description'], $item['category_id'], $item['status']);
+    }
+
+    return $list;
+  }
 }
