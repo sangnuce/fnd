@@ -13,6 +13,15 @@
         <li><a href="#">About</a></li>
         <li><a href="#">Help</a></li>
       </ul>
+      <ul class="nav navbar-nav">
+        <div class="form-group search">
+          <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm">
+        </div>
+        <div class="cart">
+          <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+          <span class="txt-add-cart">Có 0 sản phẩm trong giỏ hàng</span>
+        </div>
+      </ul>
       <ul class="nav navbar-nav navbar-right">
         <?php if (logged_in()) { ?>
           <?php if (is_admin()) { ?>
