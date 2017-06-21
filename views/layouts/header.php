@@ -19,8 +19,9 @@ foreach (CartItem::all() as $cartItem) {
     </div>
     <div class="collapse navbar-collapse" id="my-navbar">
       <ul class="nav navbar-nav">
-        <li><a href="#">About</a></li>
-        <li><a href="#">Help</a></li>
+        <li><a href="#hello">Welcome</a></li>
+        <li><a href="#product">Sản phẩm</a></li>
+        <li><a href="#contact">Liên hệ</a></li>
         <li title="Có <?= $totalCartProduct ?> sản phẩm trong giỏ hàng">
           <a href="<?= get_route('carts', 'showCart') ?>" class="icon-bag-cart">
             <i class="fa fa-shopping-bag" aria-hidden="true"></i>

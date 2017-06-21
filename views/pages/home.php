@@ -4,18 +4,18 @@
       <div class="slItems">
         <div class="slItem" style="background-image: url('views/assets/images/slider-1.png');"></div>
         <div class="slItem" style="background-image: url('views/assets/images/slider-2.png');"></div>
-        <div class="slItem" style="background-image: url('views/assets/images/slider-5.png');"></div>
-        <div class="slItem" style="background-image: url('views/assets/images/slider-6.png');"></div>
+        <div class="slItem" style="background-image: url('views/assets/images/cream.png');"></div>
+        <div class="slItem" style="background-image: url('views/assets/images/chicken-sandwich.png');"></div>
       </div>
     </div>
   </div>
 
-  <div class="welcome col-md-12 col-sm-12 col-xs-12">
+  <div class="welcome col-md-12 col-sm-12 col-xs-12" id="hello">
     <h2 class="wow">FoodnDrink</h2>
     <p>Mắt đẫn đờ, dạ dày rỗng, con tim rối bời chỉ vì không biết ăn gì ở đâu? Đừng lo, vào đây có hết!</p>
   </div>
 
-  <div class="lst-product col-md-9 col-sm-9 col-xs-12">
+  <div class="lst-product col-md-9 col-sm-9 col-xs-12" id="product">
     <?php foreach ($categories as $category) {
       $products = $category->getInStockProducts();
       if (empty($products)) continue;

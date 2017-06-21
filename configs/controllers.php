@@ -6,4 +6,5 @@ return array(
   'users' => ['newUser', 'showUser', 'createUser'],
   'carts' => ['createCart', 'updateCart', 'showCart', 'destroyCart'],
   'orders' => ['createOrder', 'showOrder'],
+  'categories' => ['showCategory'],
 );
