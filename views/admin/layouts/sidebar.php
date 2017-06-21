@@ -1,6 +1,11 @@
 <aside class="main-sidebar">
   <section class="sidebar">
     <ul class="sidebar-menu">
+      <li>
+        <a href="<?= root('admin') ?>">
+          <i class="fa fa-home"></i> <span>Trang quản lý</span>
+        </a>
+      </li>
       <li class="header">CHỨC NĂNG CHÍNH</li>
       <li>
         <a href="<?= get_route('users', 'index', 'admin') ?>">

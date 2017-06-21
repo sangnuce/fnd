@@ -1,4 +1,5 @@
 <?php
+require_once('models/order.php');
 
 class User
 {
@@ -99,6 +100,19 @@ class User
     $rs = $query->execute(array('id' => $item->id));
     return $rs;
   }
-}
 
-?>
+  function getListOrders()
+  {
+    $list = [];
+    $db = DB::getInstance();
+    $req = $db->prepare('SELECT * FROM orders WHERE user_id=:user_id');
+    $req->execute(array('user_id' => $this->id));
+
+    foreach ($req->fetchAll() as $item) {
+      $list[] = new Order($item['id'], $item['user_id'], $item['receiver_name'], $item['receiver_address'], $item['receiver_phone'], $item['note'], $item['amount'], $item['status']);
+    }
+
+    return $list;
+  }
+
+}
