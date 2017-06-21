@@ -10,7 +10,7 @@ class User
   public $activated;
   public $is_admin;
 
-  function __construct($id, $email, $password, $name, $phone, $activated, $is_admin = null)
+  function __construct($id, $email, $password, $name, $phone, $activated = 1, $is_admin = 0)
   {
     $this->id = $id;
     $this->email = $email;

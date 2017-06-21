@@ -25,7 +25,9 @@
             <label>Danh mục</label>
             <select class="form-control" name="category_id" id="category_id">
               <option value="0">Chọn danh mục</option>
-              <?php foreach ($categories as $category) { ?>
+              <?php foreach ($categories as $category) {
+                if ($category->parent_id == 0) continue;
+                ?>
                 <option value="<?= $category->id ?>"
                   <?= $category->id == $product->category_id ? 'selected' : '' ?>>
                   <?= $category->name ?>

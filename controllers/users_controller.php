@@ -17,7 +17,7 @@ class UsersController extends BaseController
   public function createUser()
   {
     if ($this->validate()) {
-      $item = new User(null, @$_POST['email'], md5(@$_POST['password']), @$_POST['name'], @$_POST['phone'], 1, 0);
+      $item = new User(null, @$_POST['email'], md5(@$_POST['password']), @$_POST['name'], @$_POST['phone']);
       $rs = User::insert($item);
       if ($rs) {
         $item->id = $rs;

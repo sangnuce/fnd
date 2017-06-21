@@ -4,4 +4,6 @@ return array(
   'sessions' => ['newSession', 'createSession', 'destroySession'],
   'products' => ['showProduct'],
   'users' => ['newUser', 'createUser'],
+  'carts' => ['createCart', 'updateCart', 'showCart', 'destroyCart'],
+  'orders' => ['createOrder', 'showOrder'],
 );
