@@ -11,7 +11,7 @@
   </div>
 
   <div class="welcome col-md-12 col-sm-12 col-xs-12">
-    <h2>FoodnDrink</h2>
+    <h2 class="wow">FoodnDrink</h2>
     <p>Mắt đẫn đờ, dạ dày rỗng, con tim rối bời chỉ vì không biết ăn gì ở đâu? Đừng lo, vào đây có hết!</p>
   </div>
 
@@ -79,6 +79,7 @@
 </div>
 
 <script>
+new WOW().init();
   $(function () {
     $('#slider').rbtSlider({
       height: '100vh',
