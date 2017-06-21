@@ -370,16 +370,19 @@ body {
   padding-left: 0px;
   margin-top: 10px;
 }
+
 .lst-product .detail-cat .detail-item .item > a {
   display: block;
   height: 200px;
   overflow: hidden;
 }
+
 .lst-product .detail-cat .detail-item .item > a img {
   min-height: 200px;
   min-width: 100%;
   object-fit: cover;
 }
+
 .lst-product .detail-cat .detail-item .item .infor-product {
   background-color: #F1ECD8;
   padding-bottom: 10px;
@@ -639,111 +642,133 @@ body {
 }
 
 /*Payment-lst-product.html*/
-.title-lst-cart{
+.title-lst-cart {
   text-transform: uppercase;
-    color: #F39064;
-    font-size: 24px;
-    font-weight: bold;
-    padding-left: 125px;
-    padding-bottom: 20px;
+  color: #F39064;
+  font-size: 24px;
+  font-weight: bold;
+  padding-left: 125px;
+  padding-bottom: 20px;
 }
-.tr-cart-item .cart-item-image a img{
+
+.tr-cart-item .cart-item-image a img {
   height: 40px;
   width: auto;
   float: left;
 }
-.tr-cart-item{
+
+.tr-cart-item {
   border-bottom: 1px solid #323232;
 }
-.tr-cart-item .cart-item-image a .cart-item-name{
+
+.tr-cart-item .cart-item-image a .cart-item-name {
   margin-left: 10px;
   margin-top: 10px;
   display: inline-block;
   color: #323232;
   font-weight: bold;
 }
-.td-padding-top{
+
+.td-padding-top {
   padding-top: 16px !important;
 }
-.cart-item-quantity .quantity input{
+
+.cart-item-quantity .quantity input {
   border-radius: 0px;
   box-shadow: none;
   width: 60px;
 }
-.total-price{
+
+.total-price {
   font-size: 16px;
 }
-.amount, .total-price{
-  color:#c9302c;
+
+.amount, .total-price {
+  color: #c9302c;
   font-weight: bold;
 }
-.product-payment{
+
+.product-payment {
   color: #323232;
   font-weight: bold;
   font-size: 16px;
 }
-.cart-table thead{
+
+.cart-table thead {
   background-color: #9DE0D0;
-} 
-.table-bordered>tbody>tr>th, .table-bordered>tbody>tr>td, .table-bordered>thead>tr>th,
-.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>td, .table>tbody>tr>td {
-    border: 0px;
-  }
-.btn-in-cart{
+}
+
+.table-bordered > tbody > tr > th, .table-bordered > tbody > tr > td, .table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > td, .table-bordered > tbody > tr > td, .table > tbody > tr > td {
+  border: 0px;
+}
+
+.btn-in-cart {
   background-color: transparent !important;
   text-shadow: none !important;
   box-shadow: none;
   background-image: none;
   border: 0px;
 }
+
 .btn-in-cart:hover,
-.btn-in-cart:focus{
+.btn-in-cart:focus {
 
 }
-.btn-save i{
+
+.btn-save i {
   color: #3B5998;
   font-weight: bold;
 }
-.btn-delete i{
+
+.btn-delete i {
   color: red;
   font-weight: bold;
 }
-.btn-pay{
+
+.btn-pay {
   border-radius: 0px;
-  border:0px;
+  border: 0px;
 }
+
 .btn-pay:hover,
-.btn-pay:focus{
+.btn-pay:focus {
   border-radius: 0px;
 }
 
 /*Form nhập thông tin*/
-.form-infor-customer{
+.form-infor-customer {
   margin-top: 10px;
   border: 1px dashed #666;
   padding-bottom: 20px;
 }
-.form-infor-customer h4{
+
+.form-infor-customer h4 {
   text-transform: uppercase;
-    color: #F39064;
-    font-size: 20px;
-    font-weight: bold;
-    padding-bottom: 20px;
+  color: #F39064;
+  font-size: 20px;
+  font-weight: bold;
+  padding-bottom: 20px;
 }
-.form-infor-customer .form-control{
+
+.form-infor-customer .form-control {
   border-radius: 0px;
   box-shadow: none !important;
 }
-.btn-order{
+
+.btn-order {
   float: right;
-  /*background-color: #F39064;*/
   border-radius: 0px;
   color: #fff;
   border: 0px;
 }
-.btn-order:hover, .btn-order:focus{
-  /*background-color:  #F39064;*/
+
+.btn-order:hover, .btn-order:focus {
   border-radius: 0px;
   color: #fff;
   border: 0px;
+}
+
+.form-errors {
+  color: red;
 }

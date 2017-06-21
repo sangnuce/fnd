@@ -10,7 +10,8 @@ class SessionsController extends BaseController
 
   public function newSession()
   {
-    $this->render('new');
+    $data = array('title' => 'Đăng nhập hệ thống');
+    $this->render('new', $data);
   }
 
   public function createSession()
