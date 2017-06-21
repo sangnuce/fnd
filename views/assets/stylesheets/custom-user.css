@@ -90,6 +90,7 @@ body {
 
 .content-container {
   padding: 0;
+  min-height: calc(100vh - 265px);
 }
 
 .login-box {
@@ -652,8 +653,9 @@ body {
 }
 
 .tr-cart-item .cart-item-image a img {
-  height: 40px;
-  width: auto;
+  max-height: 40px;
+  min-width: 75px;
+  object-fit: cover;
   float: left;
 }
 
@@ -683,7 +685,7 @@ body {
   font-size: 16px;
 }
 
-.amount, .total-price {
+.price, .amount, .total-price {
   color: #c9302c;
   font-weight: bold;
 }

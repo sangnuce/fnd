@@ -1,3 +1,10 @@
+<?php
+require_once('models/cart_item.php');
+$totalCartProduct = 0;
+foreach (CartItem::all() as $cartItem) {
+  $totalCartProduct += $cartItem->quantity;
+}
+?>
 <header class="navbar navbar-inverse navbar-fixed-top custom-navbar">
   <div class="container">
     <div class="navbar-header">
@@ -15,9 +22,9 @@
         <li><a href="#">About</a></li>
         <li><a href="#">Help</a></li>
         <li>
-          <a href="#" class="icon-bag-cart">
+          <a href="<?= get_route('carts', 'showCart') ?>" class="icon-bag-cart">
             <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-            <span class="number-product">3</span>
+            <span class="number-product"><?= $totalCartProduct ?></span>
           </a>
         </li>
       </ul>

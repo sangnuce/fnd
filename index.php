@@ -1,20 +1,21 @@
 <?php
-  session_start();
-  date_default_timezone_set('Asia/Ho_Chi_Minh');
-  require_once('db.php');
-  require_once('helpers/application_helper.php');
+session_start();
+date_default_timezone_set('Asia/Ho_Chi_Minh');
+require_once('db.php');
+require_once('helpers/application_helper.php');
 
-  if (isset($_GET['controller'])) {
-    $controller = $_GET['controller'];
-    if (isset($_GET['action'])) {
-      $action = $_GET['action'];
-    } else {
-      $action = 'index';
-    }
+if (!@$_SESSION['cart']) $_SESSION['cart'] = array();
+
+if (isset($_GET['controller'])) {
+  $controller = $_GET['controller'];
+  if (isset($_GET['action'])) {
+    $action = $_GET['action'];
   } else {
-    $controller = 'pages';
-    $action = 'home';
+    $action = 'index';
   }
-  $namespace = @$_GET['namespace'];
-  require_once('routes.php');
-?>
+} else {
+  $controller = 'pages';
+  $action = 'home';
+}
+$namespace = @$_GET['namespace'];
+require_once('routes.php');

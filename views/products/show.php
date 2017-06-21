@@ -12,13 +12,13 @@
       </p>
 
       <div class="col-sm-12 addToCart">
-        <form class="cart-form col-md-12" method="POST">
+        <form class="cart-form col-md-12" method="POST" id="form-add-to-cart" data-product-id="<?= $product->id ?>">
           <div class="quantity">
             <label for="">Số lượng:</label>
             <div class="input-group">
               <input type="number" name="quantity" value="1" min="1" class="quantity-txt form-control" size="4">
               <span class="input-group-btn cart-control">
-                <button id="" type="submit" class="btn button-my-cart btn-danger">
+                <button type="submit" class="btn button-my-cart btn-danger">
                   <i class="fa fa-cart-plus"></i> Thêm vào giỏ hàng
                 </button>
               </span>
@@ -127,3 +127,22 @@
     </div>
   </div>
 </div>
+<script>
+  $('#form-add-to-cart').submit(function (event) {
+    event.preventDefault();
+    var quantity = parseInt($('.quantity-txt', $(this)).val());
+    var product_id = $(this).data('product-id');
+    $.ajax({
+      url: 'index.php?controller=carts&action=createCart',
+      type: 'POST',
+      dataType: 'JSON',
+      data: {
+        quantity: quantity,
+        product_id: product_id
+      },
+      success: function (data) {
+        $('.number-product').html(data.total_product);
+      }
+    });
+  });
+</script>

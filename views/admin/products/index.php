@@ -86,7 +86,7 @@
       ]
     });
 
-    $('.show-product-images').click(function (event) {
+    $('.datatable').on('click', '.show-product-images', function (event) {
       event.preventDefault();
       $('.product-name').html($(this).data('name'));
       var product_id = $(this).data('id');
