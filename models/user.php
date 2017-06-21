@@ -46,6 +46,18 @@ class User
     return null;
   }
 
+  static function findByEmail($email)
+  {
+    $db = DB::getInstance();
+    $req = $db->prepare('SELECT * FROM users WHERE email=:email');
+    $req->execute(array('email' => $email));
+    $item = $req->fetch();
+    if (isset($item['id'])) {
+      return new User($item['id'], $item['email'], $item['password'], $item['name'], $item['phone'], $item['activated'], $item['is_admin']);
+    }
+    return null;
+  }
+
   static function attempt($email, $password)
   {
     $db = DB::getInstance();
@@ -65,6 +77,9 @@ class User
     $query = $db->prepare("INSERT INTO users(email, password, name, phone, activated, is_admin)
         VALUES(:email, :password, :name, :phone, :activated, :is_admin)");
     $rs = $query->execute(array('email' => $item->email, 'password' => $item->password, 'name' => $item->name, 'phone' => $item->phone, 'activated' => $item->activated, 'is_admin' => $item->is_admin));
+    if ($rs) {
+      return $db->lastInsertId();
+    }
     return $rs;
   }
 
