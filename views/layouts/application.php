@@ -19,6 +19,7 @@
     <script src="views/assets/javascripts/bootstrap.min.js"></script>
     <script src="views/assets/javascripts/slider.min.js"></script>
     <script src="views/assets/javascripts/jquery.number.min.js"></script>
+    <script src="views/assets/javascripts/wow.min.js"></script>
     <script src="views/assets/javascripts/custom.js"></script>
   </head>
   <body>

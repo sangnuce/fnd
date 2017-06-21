@@ -324,12 +324,27 @@ body {
 /*Welcome*/
 .welcome h2 {
   text-align: center;
-  font-size: 50px;
+  font-size: 55px;
   font-family: "PACIFICO";
   color: #666666;
   padding-top: 10px;
+  width: calc(0.6em * 40); 
+  width: 28ch;
+  margin: 0 auto;
+  border-right: .1em solid;
+  border-color: transparent;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-animation: typing 4s steps(16, end),
+  blink-caret 1s step-end 6 alternate;
 }
+@-webkit-keyframes typing { from { width: 0; } }
+@-webkit-keyframes blink-caret { 50% { border-color: black; } }
 
+.welcome h2:before, .welcome h2:after{
+  content: url(../images/title_after.png);
+  right: -195px;
+}
 .welcome p {
   text-align: center;
   padding-top: 10px;
@@ -463,14 +478,18 @@ body {
   line-height: 20px;
 }
 
-/*Detail-product.html*/
+/*Detail-product*/
 .show-detail-product .detail-img {
   /*padding-left: 0px;
   padding-right: 0px;*/
   padding: 10px;
   border: 3px dashed #e8e8e8;
 }
-
+.detail-img .slider [class*="ctrl"] {
+  top: 45%;
+  font-size: 70px;
+  color: #fff;
+}
 .show-detail-product .detail-descrip {
   padding-left: 30px;
 }
@@ -652,7 +671,7 @@ body {
   padding-bottom: 20px;
 }
 
-.tr-cart-item .cart-item-image a img {
+.cart-item-image a img {
   max-height: 40px;
   min-width: 75px;
   object-fit: cover;
@@ -663,7 +682,11 @@ body {
   border-bottom: 1px solid #323232;
 }
 
-.tr-cart-item .cart-item-image a .cart-item-name {
+.total_bill{
+  border-top: 1px solid #ddd;
+}
+
+.cart-item-image a .cart-item-name{
   margin-left: 10px;
   margin-top: 10px;
   display: inline-block;
@@ -772,5 +795,85 @@ body {
 }
 
 .form-errors {
+  color: red;
+}
+
+/*Detail-order*/
+.infor-lst-product .cart-item-quantity .quantity{
+  font-weight: bold;
+}
+.txt-detail-order{
+    text-transform: uppercase;
+    color: #F39064;
+    font-size: 24px;
+    font-weight: bold;
+    padding-left: 125px;
+    text-align: center;
+    padding-bottom: 20px;
+}
+.panel-info>.panel-heading {
+  background-color: #9DE0D0;
+  border: 0px;
+}
+.panel-info {
+    border-color: #9DE0D0;
+}
+.panel-info>.panel-heading {
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.table-hover>tbody>tr:hover {
+  background-color: transparent;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+  border-top: 0px;
+}
+.table>thead>tr>th{
+  border: 0px;
+}
+
+/*List-order*/
+.code-order{
+  color: #199CB9;
+}
+.view-detail{
+  text-align: right;
+  width: 170px;
+}
+.view-detail a{
+  color: #199CB9;
+}
+.table-striped>tbody>tr:nth-of-type(odd) {
+  background-color: transparent;
+}
+.table-history .table-striped thead{
+  background-color: #9DE0D0;
+}
+.table-history .table-striped tbody tr{
+  border-bottom: 1px solid #ddd;
+}
+.total-price-order{
+  color:#c9302c;
+  font-weight: bold;
+}
+.txt-history{
+  text-align: center;
+    text-transform: uppercase;
+    color: #F39064;
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+.status-close{
+  color: grey;
+  font-weight: bold;
+}
+.status-ok{
+  color: #4DAD51;
+  font-weight: bold;
+}
+.status-reject{
+  font-weight: bold;
   color: red;
 }
