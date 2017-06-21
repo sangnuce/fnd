@@ -1,5 +1,5 @@
 <header class="main-header">
-  <a href="<?= root('admin') ?>" class="logo">
+  <a href="<?= root() ?>" class="logo">
     <span class="logo-mini">
       <b class="logo-highlight">F</b>n<b class="logo-highlight">D</b>
     </span>

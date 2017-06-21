@@ -21,7 +21,7 @@ foreach (CartItem::all() as $cartItem) {
       <ul class="nav navbar-nav">
         <li><a href="#">About</a></li>
         <li><a href="#">Help</a></li>
-        <li>
+        <li title="Có <?= $totalCartProduct ?> sản phẩm trong giỏ hàng">
           <a href="<?= get_route('carts', 'showCart') ?>" class="icon-bag-cart">
             <i class="fa fa-shopping-bag" aria-hidden="true"></i>
             <span class="number-product"><?= $totalCartProduct ?></span>
@@ -42,9 +42,15 @@ foreach (CartItem::all() as $cartItem) {
         </form>
       </div>
       <ul class="nav navbar-nav navbar-right management-user">
-        <?php if (logged_in()) { ?><?php if (is_admin()) { ?>
-          <li><a href="<?= root('admin') ?>"><i class="fa fa-cogs"></i> Quản lý</a></li>
-        <?php } ?>
+        <?php if (logged_in()) { ?>
+          <li>
+            <a href="<?= get_route('users', 'showUser', null, array('id' => current_user()->id)) ?>">
+              <?= current_user()->name ?>
+            </a>
+          </li>
+          <?php if (is_admin()) { ?>
+            <li><a href="<?= root('admin') ?>"><i class="fa fa-cogs"></i> Quản lý</a></li>
+          <?php } ?>
           <li><a href="<?= get_route('sessions', 'destroySession') ?>"><i class="fa fa-sign-out"></i> Đăng xuất</a></li>
         <?php } else { ?>
           <li><a href="<?= get_route('users', 'newUser') ?>"><i class="fa fa-user"></i> Đăng ký</a></li>

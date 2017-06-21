@@ -58,4 +58,10 @@ class UsersController extends BaseController
     }
     return $rs;
   }
+
+  function showUser() {
+    $user = User::find($_GET['id']);
+    $data = array('title' => 'Thông tin người dùng', 'user' => $user);
+    $this->render('show', $data);
+  }
 }

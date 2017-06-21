@@ -72,7 +72,8 @@ function renderProductImages($images)
   return $html;
 }
 
-function remove_dir($path) {
+function remove_dir($path)
+{
   if (is_dir($path)) {
     $files = array_diff(scandir($path), array('.', '..'));
     foreach ($files as $file) {
@@ -83,10 +84,24 @@ function remove_dir($path) {
   return null;
 }
 
-function getProductFirstImage($product) {
+function getProductFirstImage($product)
+{
   $images = $product->getImages();
-  if(count($images) > 0) {
+  if (count($images) > 0) {
     return $images[0]->image;
   }
   return 'views/assets/images/no-image.png';
+}
+
+function order_status($status)
+{
+  switch ($status) {
+    case 0:
+      return 'Đang chờ';
+    case 1:
+      return 'Chấp nhận';
+    case 2:
+      return 'Từ chối';
+  }
+  return '';
 }

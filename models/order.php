@@ -1,4 +1,5 @@
 <?php
+require_once('models/order_detail.php');
 
 class Order
 {
@@ -73,5 +74,18 @@ class Order
     $query = $db->prepare("UPDATE categories SET name=:name, parent_id=:parent_id WHERE id=:id");
     $rs = $query->execute(array('name' => $item->name, 'parent_id' => $item->parent_id, 'id' => $item->id));
     return $rs;
+  }
+
+  function getOrderDetails() {
+    $list = [];
+    $db = DB::getInstance();
+    $req = $db->prepare('SELECT * FROM order_details WHERE order_id=:order_id');
+    $req->execute(array('order_id' => $this->id));
+
+    foreach ($req->fetchAll() as $item) {
+      $list[] = new OrderDetail($item['order_id'], $item['product_id'], $item['quantity'], $item['price']);
+    }
+
+    return $list;
   }
 }
