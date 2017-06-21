@@ -1,4 +1,4 @@
-  <div class="footer col-xs-12 col-sm-12 col-md-12">
+  <div class="footer col-xs-12 col-sm-12 col-md-12" id="contact">
   <div class="container">
     <div class="col-md-6 col-xs-12 infor item-footer">
       <h4 class="title-item-footer">FoodnDrink</h4>
