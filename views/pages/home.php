@@ -32,7 +32,7 @@
               </a>
               <div class="infor-product col-md-12">
                 <a href="<?= get_route('products', 'showProduct', null, array('id' => $product->id)) ?>">
-                  <h4 class="name-item"><?= $product->name ?></h4>
+                  <h4 class="name-item" title="<?= $product->name ?>"><?= $product->name ?></h4>
                 </a>
                 <h4 class="price-item"><?= number_format($product->price, 0, ",", ".") ?> VND</h4>
                 <button type="button" class="btn btn-success btn-add-cart">Mua ngay</button>
