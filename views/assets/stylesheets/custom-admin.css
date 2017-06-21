@@ -45,3 +45,10 @@
 .form-errors {
   color: red;
 }
+
+.cart-item-image img {
+  max-height: 40px;
+  min-width: 75px;
+  object-fit: cover;
+  float: left;
+}

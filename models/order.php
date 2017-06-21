@@ -1,5 +1,6 @@
 <?php
 require_once('models/order_detail.php');
+require_once('models/user.php');
 
 class Order
 {
@@ -11,6 +12,7 @@ class Order
   public $note;
   public $amount;
   public $status;
+  public $user;
 
   public function __construct($id, $user_id, $receiver_name, $receiver_address, $receiver_phone, $note, $amount, $status = 0)
   {
@@ -22,6 +24,7 @@ class Order
     $this->note = $note;
     $this->amount = $amount;
     $this->status = $status;
+    $this->user = User::find($user_id);
   }
 
 
@@ -55,15 +58,7 @@ class Order
     $db = DB::getInstance();
     $query = $db->prepare("INSERT INTO orders(user_id, receiver_name, receiver_address, receiver_phone, note, amount, status)
       VALUE (:user_id, :receiver_name, :receiver_address, :receiver_phone, :note, :amount, :status)");
-    $rs = $query->execute(array(
-      'user_id' => $item->user_id,
-      'receiver_name' => $item->receiver_name,
-      'receiver_address' => $item->receiver_address,
-      'receiver_phone' => $item->receiver_phone,
-      'note' => $item->note,
-      'amount' => $item->amount,
-      'status' => $item->status
-    ));
+    $rs = $query->execute(array('user_id' => $item->user_id, 'receiver_name' => $item->receiver_name, 'receiver_address' => $item->receiver_address, 'receiver_phone' => $item->receiver_phone, 'note' => $item->note, 'amount' => $item->amount, 'status' => $item->status));
     if ($rs) return $db->lastInsertId();
     return $rs;
   }
@@ -71,12 +66,13 @@ class Order
   static function update($item)
   {
     $db = DB::getInstance();
-    $query = $db->prepare("UPDATE categories SET name=:name, parent_id=:parent_id WHERE id=:id");
-    $rs = $query->execute(array('name' => $item->name, 'parent_id' => $item->parent_id, 'id' => $item->id));
+    $query = $db->prepare("UPDATE orders SET status=:status WHERE id=:id");
+    $rs = $query->execute(array('status' => $item->status, 'id' => $item->id));
     return $rs;
   }
 
-  function getOrderDetails() {
+  function getOrderDetails()
+  {
     $list = [];
     $db = DB::getInstance();
     $req = $db->prepare('SELECT * FROM order_details WHERE order_id=:order_id');

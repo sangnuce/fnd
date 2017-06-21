@@ -1,9 +1,6 @@
 <section class="content-header">
   <div class="title">
     <span>Quản lý người dùng</span>
-    <a href="<?= get_route('users', 'newUser', 'admin') ?>" class="btn btn-primary pull-right">
-      <i class="fa fa-plus"></i> Thêm mới
-    </a>
   </div>
 </section>
 
