@@ -105,3 +105,26 @@ function order_status($status)
   }
   return '';
 }
+
+function renderOrderDetails($order)
+{
+  $html = '';
+  foreach ($order->getOrderDetails() as $orderDetail) {
+    $html .= '<tr>
+      <td class="cart-item-image">
+        <img src="' . getProductFirstImage($orderDetail->product) . '" class="img-responsive"/> &nbsp;
+        <span class="cart-item-name">' . $orderDetail->product->name . '</span>
+      </td>
+      <td class="cart-item-quantity td-padding-top">
+        <span class="quantity">' . $orderDetail->quantity . '</span>
+      </td>
+      <td class="cart-item-subtotal td-padding-top">
+        <span class="price">' . number_format($orderDetail->price, 0, ',', ' . ') . ' VND </span >
+      </td >
+      <td class="cart-item-subtotal td-padding-top" >
+        <span class="total-price" > ' . number_format($orderDetail->amount, 0, ',', ' . ') . ' VND </span >
+      </td >
+    </tr > ';
+  }
+  return $html;
+}

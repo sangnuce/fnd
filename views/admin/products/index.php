@@ -98,7 +98,7 @@
           $('#product-images .images').html(data);
           $('#product-images').modal();
         }
-      })
+      });
     });
 
     $('.form-upload-image').submit(function (event) {

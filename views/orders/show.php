@@ -45,7 +45,7 @@
           <?php foreach ($order->getOrderDetails() as $orderDetail) { ?>
             <tr>
               <td class="cart-item-image">
-                <a href="">
+                <a href="<?= get_route('products', 'showProduct', null, array('id' => $orderDetail->product_id)) ?>">
                   <img src="<?= getProductFirstImage($orderDetail->product) ?>" class="img-responsive"/>
                   <span class="cart-item-name"><?= $orderDetail->product->name ?></span>
                 </a>

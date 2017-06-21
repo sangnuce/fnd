@@ -16,26 +16,6 @@ class UsersController extends BaseController
     $this->render('index', $data);
   }
 
-  public function newUser()
-  {
-    $data = array('title' => 'Thêm mới người dùng');
-    $this->render('new', $data);
-  }
-
-  public function createUser()
-  {
-    $item = new User(null, @$_POST['email'], md5('123456'), @$_POST['name'], @$_POST['phone'], @$_POST['activated'], @$_POST['is_admin']);
-    $rs = User::insert($item);
-    if ($rs) {
-      $_SESSION['message'] = array('class' => 'success', 'content' => 'Thêm mới người dùng thành công');
-      redirect_to(get_route('users', 'index', 'admin'));
-    } else {
-      $_SESSION['message'] = array('class' => 'danger', 'content' => 'Thêm mới người dùng thất bại');
-      $data = array('title' => 'Thêm mới người dùng');
-      $this->render('new', $data);
-    }
-  }
-
   public function editUser()
   {
     $user = User::find($_GET['id']);

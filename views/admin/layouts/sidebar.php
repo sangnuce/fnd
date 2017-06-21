@@ -22,6 +22,11 @@
           <i class="fa fa-coffee"></i> <span>Quản lý sản phẩm</span>
         </a>
       </li>
+      <li>
+        <a href="<?= get_route('orders', 'index', 'admin') ?>">
+          <i class="fa fa-shopping-bag"></i> <span>Quản lý đơn hàng</span>
+        </a>
+      </li>
     </ul>
   </section>
 </aside>
