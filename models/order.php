@@ -12,9 +12,10 @@ class Order
   public $note;
   public $amount;
   public $status;
+  public $created_at;
   public $user;
 
-  public function __construct($id, $user_id, $receiver_name, $receiver_address, $receiver_phone, $note, $amount, $status = 0)
+  public function __construct($id, $user_id, $receiver_name, $receiver_address, $receiver_phone, $note, $amount, $created_at = null, $status = 0)
   {
     $this->id = $id;
     $this->user_id = $user_id;
@@ -23,6 +24,7 @@ class Order
     $this->receiver_phone = $receiver_phone;
     $this->note = $note;
     $this->amount = $amount;
+    $this->created_at = $created_at ? $created_at : time();
     $this->status = $status;
     $this->user = User::find($user_id);
   }
@@ -35,7 +37,7 @@ class Order
     $req = $db->query('SELECT * FROM orders');
 
     foreach ($req->fetchAll() as $item) {
-      $list[] = new Order($item['id'], $item['user_id'], $item['receiver_name'], $item['receiver_address'], $item['receiver_phone'], $item['note'], $item['amount'], $item['status']);
+      $list[] = new Order($item['id'], $item['user_id'], $item['receiver_name'], $item['receiver_address'], $item['receiver_phone'], $item['note'], $item['amount'], $item['created_at'], $item['status']);
     }
 
     return $list;
@@ -48,7 +50,7 @@ class Order
     $req->execute(array('id' => $id));
     $item = $req->fetch();
     if (isset($item['id'])) {
-      return new Order($item['id'], $item['user_id'], $item['receiver_name'], $item['receiver_address'], $item['receiver_phone'], $item['note'], $item['amount'], $item['status']);
+      return new Order($item['id'], $item['user_id'], $item['receiver_name'], $item['receiver_address'], $item['receiver_phone'], $item['note'], $item['amount'], $item['created_at'], $item['status']);
     }
     return null;
   }

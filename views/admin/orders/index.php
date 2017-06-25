@@ -12,6 +12,7 @@
         <tr>
           <th>Mã đơn hàng</th>
           <th>Người đặt</th>
+          <th>Ngày đặt</th>
           <th>Người nhận</th>
           <th>Số điện thoại</th>
           <th>Số tiền</th>
@@ -23,6 +24,7 @@
         <?php foreach ($orders as $order) { ?>
           <tr>
             <td><?= $order->id ?></td>
+            <td><?= $order->created_at ?></td>
             <td><?= $order->user->name ?></td>
             <td><?= $order->receiver_name ?></td>
             <td><?= $order->receiver_phone ?></td>

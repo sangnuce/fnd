@@ -20,7 +20,7 @@
       $products = $category->getInStockProducts();
       if (empty($products)) continue;
       ?>
-      <div class="lst-drink detail-cat col-md-12 col-xs-12 col-sm-12">
+      <div class="detail-cat col-md-12 col-xs-12 col-sm-12">
         <h4 class="title-lst txt-drink">
           <i class="fa fa-hand-o-right" aria-hidden="true"></i> <?= $category->name ?>
         </h4>

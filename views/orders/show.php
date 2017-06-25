@@ -22,6 +22,10 @@
             <td><?= $order->note ?></td>
           </tr>
           <tr>
+            <th>Ngày đặt</th>
+            <td><?= $order->created_at ?></td>
+          </tr>
+          <tr>
             <th>Trạng thái</th>
             <td><strong><?= order_status($order->status) ?></strong></td>
           </tr>
