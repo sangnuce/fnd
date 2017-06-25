@@ -5,12 +5,14 @@
         <div class="slItems">
           <?php
           $images = $product->getImages();
-          if (count($images) > 0) {
+          if (count($images) > 1) {
             foreach ($images as $image) { ?>
               <div class="slItem" style="background-image: url('<?= $image->image ?>')"></div>
             <?php }
           } else { ?>
-            <div class="slItem" style="background-image: url('views/assets/images/no-image.png')"></div>
+            <div class="one-image"
+              style="background-image: url('<?= @$images[0] ? $images[0]->image : 'views/assets/images/no-image.png' ?>')">
+            </div>
           <?php } ?>
         </div>
       </div>

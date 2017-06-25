@@ -39,7 +39,7 @@ class ProductImage
     $db = DB::getInstance();
     $query = $db->prepare("DELETE FROM product_images WHERE ID=:id");
     $rs = $query->execute(array('id' => $item->id));
-    if ($rs) {
+    if ($rs && is_file($item->image)) {
       unlink($item->image);
     }
     return $rs;
