@@ -24,8 +24,8 @@
         <?php foreach ($orders as $order) { ?>
           <tr>
             <td><?= $order->id ?></td>
-            <td><?= $order->created_at ?></td>
             <td><?= $order->user->name ?></td>
+            <td><?= $order->created_at ?></td>
             <td><?= $order->receiver_name ?></td>
             <td><?= $order->receiver_phone ?></td>
             <td><?= number_format($order->amount, 0, ',', '.') ?> VND</td>
@@ -91,7 +91,11 @@
           status: $(this).val()
         },
         success: function (data) {
-          alert(data.message);
+          if (data.status == 'success') {
+            $().toastmessage('showSuccessToast', 'Cập nhật trạng thái đơn hàng thành công');
+          } else {
+            $().toastmessage('showErrorToast', 'Không thể cập nhật trạng thái đơn hàng');
+          }
         }
       });
     });

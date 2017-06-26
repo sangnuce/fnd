@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="views/assets/stylesheets/font-awesome.min.css">
     <link rel="stylesheet" href="views/assets/stylesheets/slider.css">
     <link rel="stylesheet" href="views/assets/stylesheets/animate.css">
+    <link rel="stylesheet" href="views/assets/stylesheets/jquery.toastmessage.css">
     <link rel="stylesheet" href="views/assets/stylesheets/custom-user.css">
 
 
@@ -20,6 +21,7 @@
     <script src="views/assets/javascripts/slider.min.js"></script>
     <script src="views/assets/javascripts/jquery.number.min.js"></script>
     <script src="views/assets/javascripts/wow.min.js"></script>
+    <script src="views/assets/javascripts/jquery.toastmessage.js"></script>
     <script src="views/assets/javascripts/custom.js"></script>
   </head>
   <body>

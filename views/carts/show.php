@@ -126,6 +126,7 @@
         success: function (data) {
           $('.number-product').html(data.total_product);
           $('#total_amount').val(data.total_amount);
+          $().toastmessage('showSuccessToast', 'Đã cập nhật số lượng sản phẩm trong giỏ hàng');
         }
       });
     });
@@ -145,6 +146,7 @@
             $('.number-product').html(data.total_product);
             $('#total_amount').val(data.total_amount);
             $tr_product.slideUp();
+            $().toastmessage('showSuccessToast', 'Đã loại bỏ sản phẩm khỏi giỏ hàng');
           }
         });
       }

@@ -1,6 +1,7 @@
 <?php
 require_once('models/category.php');
 require_once('models/product_image.php');
+require_once('models/rating.php');
 
 class Product
 {
@@ -10,6 +11,7 @@ class Product
   public $description;
   public $category_id;
   public $status;
+  public $rating;
 
   public function __construct($id, $name, $price, $description, $category_id, $status)
   {
@@ -19,6 +21,14 @@ class Product
     $this->description = $description;
     $this->category_id = $category_id;
     $this->status = $status;
+    $this->rating = 0;
+    $ratings = $this->getRatings();
+    if (count($ratings) > 0) {
+      foreach ($ratings as $rating) {
+        $this->rating += $rating->score;
+      }
+      $this->rating /= count($ratings);
+    }
   }
 
   static function all()
@@ -111,5 +121,32 @@ class Product
     }
 
     return $list;
+  }
+
+  function getRatings()
+  {
+    $list = [];
+    $db = DB::getInstance();
+    $req = $db->prepare('SELECT * FROM ratings WHERE product_id=:product_id');
+    $req->execute(array('product_id' => $this->id));
+
+    foreach ($req->fetchAll() as $item) {
+      $list[] = new Rating($item['id'], $item['user_id'], $item['product_id'], $item['score']);
+    }
+
+    return $list;
+  }
+
+  function getRatingBy($user)
+  {
+    $db = DB::getInstance();
+    $req = $db->prepare('SELECT * FROM ratings WHERE product_id=:product_id AND user_id=:user_id');
+    $req->execute(array('product_id' => $this->id, 'user_id' => $user->id));
+    $item = $req->fetch();
+    if ($item['id']) {
+      return new Rating($item['id'], $item['user_id'], $item['product_id'], $item['score']);
+    }
+
+    return null;
   }
 }

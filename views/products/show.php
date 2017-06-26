@@ -9,10 +9,10 @@
             foreach ($images as $image) { ?>
               <div class="slItem" style="background-image: url('<?= $image->image ?>')"></div>
             <?php }
-          } else { ?>
-            <div class="one-image"
-              style="background-image: url('<?= @$images[0] ? $images[0]->image : 'views/assets/images/no-image.png' ?>')">
-            </div>
+          } else {
+            $image = @$images[0] ? $images[0]->image : 'views/assets/images/no-image.png';
+            ?>
+            <div class="one-image" style="background-image: url('<?= $image ?>')"></div>
           <?php } ?>
         </div>
       </div>
@@ -21,6 +21,7 @@
     <div class="detail-descrip col-md-6 col-sm-6 col-xs-12">
       <h2 class="detail-name-item"><?= $product->name ?></h2>
       <h3 class="detail-price"><?= number_format($product->price, 0, ",", ".") ?>VND</h3>
+      <p id="product_rating"><?= renderRatingStar(floor($product->rating)) ?></p>
       <p class="detail-description-item">
         <?= $product->description ?>
       </p>
@@ -44,13 +45,18 @@
       <div class="rate-share col-md-12">
         <div class="rating col-md-7">
           <label class="txt-rating">Đánh giá sản phẩm</label>
-          <span class="lst-star">
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <i class="fa fa-star-o" aria-hidden="true"></i>
-          </span>
+          <form data-action="<?= $rated_score == 0 ? 'createRating' : 'updateRating' ?>"
+                data-product-id="<?= $product->id ?>">
+            <input type="hidden" name="rating_score" value="<?= $rated_score ?>" id="rating_score">
+            <span class="lst-star">
+              <?php for ($i = 1; $i <= $rated_score; $i++) { ?>
+                <i class="fa fa-star rating-star" data-index="<?= $i ?>"></i>
+              <?php } ?>
+              <?php for ($i = $rated_score + 1; $i <= 5; $i++) { ?>
+                <i class="fa fa-star-o rating-star" data-index="<?= $i ?>"></i>
+              <?php } ?>
+            </span>
+          </form>
         </div>
         <a
           href="https://www.facebook.com/sharer/sharer.php?u=<?= urlencode($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']) ?>"
@@ -140,7 +146,8 @@
       </div>
     </div>
   </div>
-</div></div>
+</div>
+
 <script>
   $(function () {
     $('#slider').rbtSlider({
@@ -149,6 +156,54 @@
       'arrows': true,
       'auto': 3
     });
+
+    $('.rating').on('mouseenter', '.rating-star', function () {
+      var index = $(this).data('index');
+      for (var i = 1; i <= index; i++) {
+        $('.rating-star[data-index="' + i + '"]').removeClass('fa-star-o').addClass('fa-star');
+      }
+      for (var i = index + 1; i <= 5; i++) {
+        $('.rating-star[data-index="' + i + '"]').removeClass('fa-star').addClass('fa-star-o');
+      }
+    });
+
+    $('.rating').on('mouseleave', '.lst-star', function () {
+      var selected = parseInt($('#rating_score').val()) || 0;
+      for (var i = 1; i <= selected; i++) {
+        $('.rating-star[data-index="' + i + '"]').removeClass('fa-star-o').addClass('fa-star');
+      }
+      for (var i = selected + 1; i <= 5; i++) {
+        $('.rating-star[data-index="' + i + '"]').removeClass('fa-star').addClass('fa-star-o');
+      }
+    });
+
+    $('.rating').on('click', '.rating-star', function () {
+      var selected = parseInt($(this).data('index'));
+      $('#rating_score').val(selected);
+      for (var i = selected + 1; i <= 5; i++) {
+        $('.rating-star[data-index="' + i + '"]').removeClass('fa-star').addClass('fa-star-o');
+      }
+      var action = $(this).closest('form').data('action');
+      var product_id = $(this).closest('form').data('product-id');
+      $.ajax({
+        url: 'index.php?controller=ratings&action=' + action,
+        type: 'POST',
+        dataType: 'JSON',
+        data: {
+          score: $('#rating_score').val(),
+          product_id: product_id
+        },
+        success: function (result) {
+          if (result.status == 'success') {
+            $('#product_rating').html(result.product_rating);
+            $().toastmessage('showSuccessToast', result.message);
+          } else {
+            $().toastmessage('showErrorToast', result.message);
+          }
+        }
+      });
+    });
+
     $('#form-add-to-cart').submit(function (event) {
       event.preventDefault();
       var quantity = parseInt($('.quantity-txt', $(this)).val());
@@ -161,8 +216,9 @@
           quantity: quantity,
           product_id: product_id
         },
-        success: function (data) {
-          $('.number-product').html(data.total_product);
+        success: function (result) {
+          $('.number-product').html(result.total_product);
+          $().toastmessage('showSuccessToast', 'Đã thêm sản phẩm vào giỏ hàng');
         }
       });
     });
