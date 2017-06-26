@@ -46,7 +46,7 @@
         <div class="rating col-md-7">
           <label class="txt-rating">Đánh giá sản phẩm</label>
           <form data-action="<?= $rated_score == 0 ? 'createRating' : 'updateRating' ?>"
-                data-product-id="<?= $product->id ?>">
+                data-product-id="<?= $product->id ?>" id="form_rate">
             <input type="hidden" name="rating_score" value="<?= $rated_score ?>" id="rating_score">
             <span class="lst-star">
               <?php for ($i = 1; $i <= $rated_score; $i++) { ?>
@@ -197,6 +197,9 @@
           if (result.status == 'success') {
             $('#product_rating').html(result.product_rating);
             $().toastmessage('showSuccessToast', result.message);
+            if ($('#form_rate').data('action') == 'createRating') {
+              $('#form_rate').data('action', 'updateRating');
+            }
           } else {
             $().toastmessage('showErrorToast', result.message);
           }
