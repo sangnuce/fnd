@@ -29,7 +29,7 @@
       <div class="panel panel-info">
         <div class="panel-heading text-center">Lịch sử đặt hàng</div>
         <div class="table-history">
-          <table class="table table-striped t">
+          <table class="table table-striped table-responsive table-hover">
             <thead>
             <tr>
               <th>Mã đơn hàng</th>

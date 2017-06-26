@@ -583,9 +583,14 @@ body {
   width: 100%;
 }
 
-.rate-share .rating .lst-star .fa-star,
-.rate-share .rating .lst-star .fa-star-o {
+.lst-star .fa-star,
+.lst-star .fa-star-o {
   color: #FCB408;
+}
+
+.rating .lst-star .fa-star,
+.rating .lst-star .fa-star-o {
+  cursor: pointer;
 }
 
 /*Form comment*/
@@ -850,10 +855,6 @@ body {
 }
 
 /*List-order*/
-.code-order {
-  color: #199CB9;
-}
-
 .view-detail {
   text-align: right;
   width: 170px;
@@ -861,6 +862,10 @@ body {
 
 .view-detail a {
   color: #199CB9;
+}
+
+.table-history .table {
+  margin-bottom: 0;
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) {

@@ -7,4 +7,5 @@ return array(
   'carts' => ['createCart', 'updateCart', 'showCart', 'destroyCart'],
   'orders' => ['createOrder', 'showOrder'],
   'categories' => ['showCategory'],
+  'ratings' => ['createRating', 'updateRating'],
 );

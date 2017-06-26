@@ -12,7 +12,13 @@ class ProductsController extends BaseController
   {
     $categories = Category::all();
     $product = Product::find($_GET['id']);
-    $data = array('title' => $product->name, 'categories' => $categories, 'product' => $product);
+    if (current_user()) {
+      $rating = $product->getRatingBy(current_user());
+      $rated_score = $rating ? $rating->score : 0;
+    } else {
+      $rated_score = 0;
+    }
+    $data = array('title' => $product->name, 'categories' => $categories, 'product' => $product, 'rated_score' => $rated_score);
     $this->render('show', $data);
   }
 }

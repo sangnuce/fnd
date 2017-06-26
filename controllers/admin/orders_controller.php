@@ -28,9 +28,9 @@ class OrdersController extends BaseController
     $item->status = @$_POST['status'];
     $rs = Order::update($item);
     if ($rs) {
-      $data = array('status' => 'success', 'message' => 'Cập nhật trạng thái thành công');
+      $data = array('status' => 'success');
     } else {
-      $data = array('status' => 'failed', 'message' => 'Cập nhật trạng thái không thành công');
+      $data = array('status' => 'failed');
     }
     die(json_encode($data));
   }

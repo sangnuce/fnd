@@ -119,8 +119,9 @@
           if (result.status == 'success') {
             $('#product-images .images').html(result.data);
             $('#product_image').val('');
+            $().toastmessage('showSuccessToast', result.message);
           } else {
-            alert(result.message);
+            $().toastmessage('showErrorToast', result.message);
           }
         }
       });
@@ -136,8 +137,9 @@
             result = JSON.parse(result);
             if (result.status == 'success') {
               $('#product-images .images').html(result.data);
+              $().toastmessage('showSuccessToast', result.message);
             } else {
-              alert(result.message);
+              $().toastmessage('showErrorToast', result.message);
             }
           }
         });

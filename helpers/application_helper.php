@@ -128,3 +128,16 @@ function renderOrderDetails($order)
   }
   return $html;
 }
+
+function renderRatingStar($score)
+{
+  $html = '<span class="lst-star">';
+  for ($i = 1; $i <= $score; $i++) {
+    $html .= '<i class="fa fa-star"></i>';
+  }
+  for ($i = $score + 1; $i <= 5; $i++) {
+    $html .= '<i class="fa fa-star-o"></i>';
+  }
+  $html .= '</span>';
+  return $html;
+}

@@ -34,6 +34,7 @@
                 <a href="<?= get_route('products', 'showProduct', null, array('id' => $product->id)) ?>">
                   <h4 class="name-item" title="<?= $product->name ?>"><?= $product->name ?></h4>
                 </a>
+                <p><?= renderRatingStar(floor($product->rating)) ?></p>
                 <h4 class="price-item"><?= number_format($product->price, 0, ",", ".") ?> VND</h4>
                 <a href="<?= get_route('products', 'showProduct', null, array('id' => $product->id)) ?>"
                    class="btn btn-success btn-add-cart">Mua ngay</a>
