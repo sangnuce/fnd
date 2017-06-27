@@ -110,4 +110,18 @@ class Category
 
     return $list;
   }
+
+  static function idsWhereNameContain($k)
+  {
+    $list = [];
+    $db = DB::getInstance();
+    $req = $db->prepare('SELECT id FROM categories WHERE name LIKE :k');
+    $req->execute(array('k' => "%$k%"));
+
+    foreach ($req->fetchAll() as $item) {
+      $list[] = $item['id'];
+    }
+
+    return $list;
+  }
 }

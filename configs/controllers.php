@@ -2,7 +2,7 @@
 return array(
   'pages' => ['home', 'error'],
   'sessions' => ['newSession', 'createSession', 'destroySession'],
-  'products' => ['showProduct'],
+  'products' => ['index', 'showProduct'],
   'users' => ['newUser', 'showUser', 'createUser'],
   'carts' => ['createCart', 'updateCart', 'showCart', 'destroyCart'],
   'orders' => ['createOrder', 'showOrder'],
