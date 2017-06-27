@@ -69,25 +69,33 @@
     <div class="cmt col-md-12">
       <div class="region-cmt col-md-8 col-md-offset-2 col-sm-offset-0 col-xs-offset-0 col-sm-12 col-xs-12">
         <div class="pt-title">
-          <span class="number-cmt">2 bình luận</span>
+          <p class="number-cmt">
+            <span class="comment_count"><?= count($comments) ?></span> bình luận </p>
         </div>
-        <form method="" class="form-cmt col-md-12">
-          <div class="form-group">
-            <img src="views/assets/images/user.png" class="avatar-user img-circle"/>
-            <input type="text" class="form-control" name="" value="Test cmt">
-          </div>
-        </form>
-        <h5 class="infor-user-post">
-          <span class="name-user-post">Dung Đỗ</span>
-        </h5>
 
-        <form method="" class="form-none-cmt form-cmt col-md-12">
-          <div class="form-group">
-            <img src="views/assets/images/user.png" class="avatar-user img-circle"/>
-            <input type="text" class="form-control" name="" placeholder="Hãy bình luận sản phẩm mình thích"/>
+        <?php if (logged_in()) { ?>
+          <form class="form-none-cmt form-cmt" id="form_comment" method="post" data-product-id="<?= $product->id ?>">
+            <div class="form-group">
+              <textarea type="text" class="form-control vresize" name="content" id="comment_content"
+                        placeholder="Hãy bình luận cho sản phẩm mình thích" required></textarea>
+            </div>
+            <div class="form-group text-right">
+              <button type="submit" class="btn btn-primary">Gửi</button>
+            </div>
+          </form>
+        <?php } else { ?>
+          <div class="well text-center">
+            Hãy <a href="<?= get_route('sessions', 'newSession') ?>">đăng nhập</a> để có thể gửi bình luận
           </div>
-        </form>
+        <?php } ?>
 
+        <div id="comments">
+          <?php
+          foreach ($comments as $comment) {
+            echo renderComment($comment);
+          }
+          ?>
+        </div>
       </div>
     </div>
   </div>
@@ -156,7 +164,6 @@
       'arrows': true,
       'auto': 3
     });
-
     $('.rating').on('mouseenter', '.rating-star', function () {
       var index = $(this).data('index');
       for (var i = 1; i <= index; i++) {
@@ -166,7 +173,6 @@
         $('.rating-star[data-index="' + i + '"]').removeClass('fa-star').addClass('fa-star-o');
       }
     });
-
     $('.rating').on('mouseleave', '.lst-star', function () {
       var selected = parseInt($('#rating_score').val()) || 0;
       for (var i = 1; i <= selected; i++) {
@@ -176,7 +182,6 @@
         $('.rating-star[data-index="' + i + '"]').removeClass('fa-star').addClass('fa-star-o');
       }
     });
-
     $('.rating').on('click', '.rating-star', function () {
       var selected = parseInt($(this).data('index'));
       $('#rating_score').val(selected);
@@ -206,7 +211,6 @@
         }
       });
     });
-
     $('#form-add-to-cart').submit(function (event) {
       event.preventDefault();
       var quantity = parseInt($('.quantity-txt', $(this)).val());
@@ -224,6 +228,49 @@
           $().toastmessage('showSuccessToast', 'Đã thêm sản phẩm vào giỏ hàng');
         }
       });
+    });
+    $('#form_comment').submit(function (event) {
+      event.preventDefault();
+      var product_id = $(this).data('product-id');
+      $.ajax({
+        url: 'index.php?controller=comments&action=createComment',
+        type: 'POST',
+        dataType: 'JSON',
+        data: {
+          content: $('#comment_content').val(),
+          product_id: product_id
+        },
+        success: function (result) {
+          if (result.status == 'success') {
+            $().toastmessage('showSuccessToast', result.message);
+            $('#comment_content').val('');
+            $('#comments').prepend(result.comment);
+            $('.comment_count').html(parseInt($('.comment_count').html()) + 1);
+          } else {
+            $().toastmessage('showErrorToast', result.message);
+          }
+        }
+      });
+    });
+    $('#comments').on('click', '.remove-comment-btn', function (event) {
+      if (confirm('Xác nhận xoá?')) {
+        event.preventDefault();
+        var $comment = $(this).closest('.comment');
+        $.ajax({
+          url: 'index.php?controller=comments&action=destroyComment&id=' + $comment.data('comment-id'),
+          type: 'DELETE',
+          dataType: 'JSON',
+          success: function (result) {
+            if (result.status == 'success') {
+              $().toastmessage('showSuccessToast', result.message);
+              $comment.slideUp('slow');
+              $('.comment_count').html(parseInt($('.comment_count').html()) - 1);
+            } else {
+              $().toastmessage('showErrorToast', result.message);
+            }
+          }
+        });
+      }
     });
   })
 </script>

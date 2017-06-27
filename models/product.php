@@ -2,6 +2,7 @@
 require_once('models/category.php');
 require_once('models/product_image.php');
 require_once('models/rating.php');
+require_once('models/comment.php');
 
 class Product
 {
@@ -148,5 +149,19 @@ class Product
     }
 
     return null;
+  }
+
+  function getComments()
+  {
+    $list = [];
+    $db = DB::getInstance();
+    $req = $db->prepare('SELECT * FROM comments WHERE product_id=:product_id ORDER BY id DESC');
+    $req->execute(array('product_id' => $this->id));
+
+    foreach ($req->fetchAll() as $item) {
+      $list[] = new Comment($item['id'], $item['user_id'], $item['product_id'], $item['content']);
+    }
+
+    return $list;
   }
 }

@@ -12,7 +12,8 @@ class CategoriesController extends BaseController
   {
     $categories = Category::all();
     $category = Category::find($_GET['id']);
-    $data = array('title' => $category->name, 'category' => $category, 'categories' => $categories);
+    $products = $category->getInStockProducts();
+    $data = array('title' => $category->name, 'category' => $category, 'categories' => $categories, 'products' => $products);
     $this->render('show', $data);
   }
 }

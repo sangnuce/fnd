@@ -321,7 +321,7 @@ body {
   font-family: "PACIFICO";
   color: #666666;
   padding-top: 10px;
-  width: 24em;
+  width: 24ch;
   margin: 0 auto;
   border-right: .1em solid;
   border-color: transparent;
@@ -653,8 +653,6 @@ body {
 }
 
 .name-user-post {
-  float: left;
-  padding-top: 5px;
   color: #666;
   font-size: 12px;
   font-weight: bold;
@@ -914,4 +912,17 @@ body {
   height: 100%;
   background-repeat: no-repeat;
   background-size: 100%;
+}
+
+.vresize {
+  resize: vertical;
+}
+
+.remove-comment-btn {
+  display: none;
+  cursor: pointer;
+}
+
+.comment:hover .remove-comment-btn {
+  display: block;
 }
