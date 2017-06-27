@@ -33,7 +33,7 @@ class Order
   {
     $list = [];
     $db = DB::getInstance();
-    $req = $db->query('SELECT * FROM orders');
+    $req = $db->query('SELECT * FROM orders ORDER BY status ASC, created_at DESC');
 
     foreach ($req->fetchAll() as $item) {
       $list[] = new Order($item['id'], $item['user_id'], $item['receiver_name'], $item['receiver_address'], $item['receiver_phone'], $item['note'], $item['amount'], $item['created_at'], $item['status']);
