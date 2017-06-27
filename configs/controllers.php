@@ -8,4 +8,5 @@ return array(
   'orders' => ['createOrder', 'showOrder'],
   'categories' => ['showCategory'],
   'ratings' => ['createRating', 'updateRating'],
+  'comments' => ['createComment', 'destroyComment'],
 );

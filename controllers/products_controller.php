@@ -18,7 +18,8 @@ class ProductsController extends BaseController
     } else {
       $rated_score = 0;
     }
-    $data = array('title' => $product->name, 'categories' => $categories, 'product' => $product, 'rated_score' => $rated_score);
+    $comments = $product->getComments();
+    $data = array('title' => $product->name, 'categories' => $categories, 'product' => $product, 'rated_score' => $rated_score, 'comments' => $comments);
     $this->render('show', $data);
   }
 }
