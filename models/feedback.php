@@ -24,7 +24,7 @@ class Feedback
   {
     $list = [];
     $db = DB::getInstance();
-    $req = $db->query('SELECT * FROM feedbacks');
+    $req = $db->query('SELECT * FROM feedbacks ORDER BY status ASC, created_at DESC');
 
     foreach ($req->fetchAll() as $item) {
       $list[] = new Feedback($item['id'], $item['user_id'], $item['content'], $item['created_at'], $item['status']);

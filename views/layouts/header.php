@@ -34,7 +34,7 @@ foreach (CartItem::all() as $cartItem) {
           <input type="hidden" name="controller" value="products">
           <input type="hidden" name="action" value="index">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search" name="k">
+            <input type="text" class="form-control" placeholder="Search" name="k" value="<?= @$_GET['k'] ?>">
             <div class="input-group-btn">
               <button class="btn btn-default" type="submit">
                 <i class="glyphicon glyphicon-search head-search-icon"></i>

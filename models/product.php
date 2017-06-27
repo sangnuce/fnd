@@ -169,7 +169,7 @@ class Product
   {
     $list = [];
     $db = DB::getInstance();
-    $req = $db->prepare('SELECT * FROM products WHERE name LIKE :k OR category_id IN (:category_ids)');
+    $req = $db->prepare('SELECT * FROM products WHERE status=1 AND name LIKE :k OR category_id IN (:category_ids)');
     $req->execute(array('k' => "%$k%", 'category_ids' => implode(',', $category_ids)));
 
     foreach ($req->fetchAll() as $item) {
