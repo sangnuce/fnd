@@ -19,8 +19,7 @@ foreach (CartItem::all() as $cartItem) {
     </div>
     <div class="collapse navbar-collapse" id="my-navbar">
       <ul class="nav navbar-nav">
-        <li><a href="#hello">Welcome</a></li>
-        <li><a href="#product">Sản phẩm</a></li>
+        <li><a href="<?= get_route('products', 'index') ?>">Sản phẩm</a></li>
         <li><a href="#contact">Liên hệ</a></li>
         <li title="Có <?= $totalCartProduct ?> sản phẩm trong giỏ hàng">
           <a href="<?= get_route('carts', 'showCart') ?>" class="icon-bag-cart">
@@ -31,9 +30,11 @@ foreach (CartItem::all() as $cartItem) {
       </ul>
 
       <div class="col-sm-3 col-md-3 find-input">
-        <form class="navbar-form" role="search">
+        <form action="<?= root() ?>" method="get" class="navbar-form" role="search">
+          <input type="hidden" name="controller" value="products">
+          <input type="hidden" name="action" value="index">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search" name="q">
+            <input type="text" class="form-control" placeholder="Search" name="k">
             <div class="input-group-btn">
               <button class="btn btn-default" type="submit">
                 <i class="glyphicon glyphicon-search head-search-icon"></i>

@@ -164,4 +164,18 @@ class Product
 
     return $list;
   }
+
+  static function containKeywordOrInCategories($k, $category_ids)
+  {
+    $list = [];
+    $db = DB::getInstance();
+    $req = $db->prepare('SELECT * FROM products WHERE name LIKE :k OR category_id IN (:category_ids)');
+    $req->execute(array('k' => "%$k%", 'category_ids' => implode(',', $category_ids)));
+
+    foreach ($req->fetchAll() as $item) {
+      $list[] = new Product($item['id'], $item['name'], $item['price'], $item['description'], $item['category_id'], $item['status']);
+    }
+
+    return $list;
+  }
 }
