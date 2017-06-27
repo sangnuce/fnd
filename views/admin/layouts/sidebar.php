@@ -27,6 +27,11 @@
           <i class="fa fa-shopping-bag"></i> <span>Quản lý đơn hàng</span>
         </a>
       </li>
+      <li>
+        <a href="<?= get_route('feedbacks', 'index', 'admin') ?>">
+          <i class="fa fa-envelope"></i> <span>Quản lý góp ý</span>
+        </a>
+      </li>
     </ul>
   </section>
 </aside>

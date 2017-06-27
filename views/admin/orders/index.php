@@ -78,8 +78,27 @@
 
 <script type="text/javascript">
   $(function () {
+    $.fn.dataTable.ext.order['dom-select'] = function (settings, col) {
+      return this.api().column(col, {order: 'index'}).nodes().map(function (td, i) {
+        return $('select', td).val();
+      });
+    }
+
     $('.datatable').DataTable({
-      'aaSorting': []
+      'aaSorting': [],
+      'columnDefs': [
+        {'targets': 6, 'orderable': false}
+      ],
+      'columns': [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        {'orderDataType': 'dom-select'}
+      ]
     });
 
     $('.datatable').on('change', '.order_status', function () {

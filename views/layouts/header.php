@@ -52,6 +52,8 @@ foreach (CartItem::all() as $cartItem) {
           </li>
           <?php if (is_admin()) { ?>
             <li><a href="<?= root('admin') ?>"><i class="fa fa-cogs"></i> Quản lý</a></li>
+          <?php } else { ?>
+            <li><a href="#" data-toggle="modal" data-target="#feedback-modal">Góp ý</a></li>
           <?php } ?>
           <li><a href="<?= get_route('sessions', 'destroySession') ?>"><i class="fa fa-sign-out"></i> Đăng xuất</a></li>
         <?php } else { ?>
@@ -62,3 +64,51 @@ foreach (CartItem::all() as $cartItem) {
     </div>
   </div>
 </header>
+
+<div class="modal fade" id="feedback-modal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="feedback_form">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Góp ý cho cửa hàng</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="feedback_content">Nội dung</label>
+            <textarea name="content" id="feedback_content" cols="30" rows="10" class="form-control vresize"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+          <button type="submit" class="btn btn-primary">Gửi góp ý</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function () {
+    $('#feedback_form').submit(function (event) {
+      event.preventDefault();
+      $.ajax({
+        url: 'index.php?controller=feedbacks&action=createFeedback',
+        type: 'POST',
+        dataType: 'JSON',
+        data: {
+          content: $('#feedback_content').val()
+        },
+        success: function (result) {
+          if (result.status == 'success') {
+            $().toastmessage('showSuccessToast', result.message);
+            $('#feedback_content').val('');
+            $('#feedback-modal').modal('hide');
+          } else {
+            $().toastmessage('showErrorToast', result.message);
+          }
+        }
+      });
+    });
+  });
+</script>

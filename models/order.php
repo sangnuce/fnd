@@ -29,7 +29,6 @@ class Order
     $this->user = User::find($user_id);
   }
 
-
   static function all()
   {
     $list = [];
