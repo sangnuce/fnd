@@ -9,4 +9,5 @@ return array(
   'categories' => ['showCategory'],
   'ratings' => ['createRating', 'updateRating'],
   'comments' => ['createComment', 'destroyComment'],
+  'feedbacks' => ['createFeedback'],
 );

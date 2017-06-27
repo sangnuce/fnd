@@ -6,4 +6,5 @@ return array(
   'products' => ['index', 'newProduct', 'createProduct', 'editProduct', 'updateProduct', 'destroyProduct', 'showImages'],
   'product_images' => ['createProductImage', 'destroyProductImage'],
   'orders' => ['index', 'showOrder', 'updateOrder'],
+  'feedbacks' => ['index', 'updateFeedback'],
 );
