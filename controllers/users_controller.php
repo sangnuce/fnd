@@ -16,8 +16,8 @@ class UsersController extends BaseController
 
   public function createUser()
   {
-    if ($this->validate()) {
-      $item = new User(null, @$_POST['email'], md5(@$_POST['password']), @$_POST['name'], @$_POST['phone']);
+    $item = new User(null, @$_POST['email'], md5(@$_POST['password']), @$_POST['name'], @$_POST['phone']);
+    if ($item->validate()) {
       $rs = User::insert($item);
       if ($rs) {
         $item->id = $rs;
@@ -36,32 +36,45 @@ class UsersController extends BaseController
     }
   }
 
-  function validate() {
-    $rs = true;
-    if (@$_POST['email']) {
-      if (User::findByEmail($_POST['email'])) {
-        $_SESSION['form_errors'][] = "Email đã tồn tại trong hệ thống";
-        $rs = false;
-      }
-    } else {
-      $_SESSION['form_errors'][] = "Email chưa được nhập";
-      $rs = false;
-    }
-    if (@$_POST['password']) {
-      if ($_POST['password'] != @$_POST['confirm_password']) {
-        $_SESSION['form_errors'][] = "Mật khẩu không trùng khớp";
-        $rs = false;
-      }
-    } else {
-      $_SESSION['form_errors'][] = "Mật khẩu chưa được nhập";
-      $rs = false;
-    }
-    return $rs;
-  }
-
-  function showUser() {
+  function showUser()
+  {
     $user = User::find($_GET['id']);
     $data = array('title' => 'Thông tin người dùng', 'user' => $user);
     $this->render('show', $data);
+  }
+
+  function editUser()
+  {
+    $user = User::find($_GET['id']);
+    $data = array('title' => 'Cập nhật thông tin người dùng', 'user' => $user);
+    $this->render('edit', $data);
+  }
+
+  public function updateUser()
+  {
+    $item = User::find($_GET['id']);
+    $item->email = @$_POST['email'];
+    $item->name = @$_POST['name'];
+    $item->phone = @$_POST['phone'];
+    if (@$_POST['password']) {
+      $item->password = md5($_POST['password']);
+    }
+    if ($item->validate()) {
+      $rs = User::update($item);
+      if ($rs) {
+        $item->id = $rs;
+        $_SESSION['user'] = serialize($item);
+        $_SESSION['message'] = array('class' => 'success', 'content' => 'Cập nhật thông tin thành công');
+        redirect_to(get_route('users', 'showUser', null, array('id' => $item->id)));
+      } else {
+        $_SESSION['message'] = array('class' => 'danger', 'content' => 'Cập nhật thông tin thất bại');
+        $data = array('title' => 'Cập nhật thông tin người dùng', 'user' => $item);
+        $this->render('edit', $data);
+      }
+    } else {
+      $_SESSION['message'] = array('class' => 'danger', 'content' => 'Cập nhật thông tin thất bại');
+      $data = array('title' => 'Cập nhật thông tin người dùng', 'user' => $item);
+      $this->render('edit', $data);
+    }
   }
 }

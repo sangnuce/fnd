@@ -5,9 +5,9 @@
       <thead>
       <tr>
         <th>Sản phẩm</th>
-        <th>Đơn giá</th>
+        <th class="text-right">Đơn giá</th>
         <th>Số lượng</th>
-        <th>Tổng tiền</th>
+        <th class="text-right">Tổng tiền</th>
         <th></th>
         <th></th>
       </tr>
@@ -38,13 +38,13 @@
           </td>
           <td style="width: 20px;padding-left: 0px; padding-right: 0px;">
             <button type="button" class="btn btn-in-cart btn-save btn-info"
-                    data-product-id="<?= $cartItem->product_id ?>">
+                    data-product-id="<?= $cartItem->product_id ?>" title="Lưu sửa đổi">
               <i class="fa fa-floppy-o" aria-hidden="true"></i>
             </button>
           </td>
           <td style="width: 20px;padding-left: 0px; padding-right: 0px;">
             <button type="button" class="btn btn-in-cart btn-delete btn-info"
-                    data-product-id="<?= $cartItem->product_id ?>">
+                    data-product-id="<?= $cartItem->product_id ?>" title="Xoá sản phẩm">
               <i class="fa fa-trash-o" aria-hidden="true"></i>
             </button>
           </td>
@@ -57,7 +57,7 @@
           <span class="total-price"
                 data-value="<?= $total_amount ?>"><?= number_format($total_amount, 0, ",", ".") ?> VND</span>
         </td>
-        <td colspan="2">
+        <td colspan="2" class="text-right">
           <?php if (count($cartItems) > 0) {
             if (logged_in()) { ?>
               <button type="button" class="btn btn-pay btn-info" data-toggle="collapse"
@@ -144,6 +144,9 @@
             $('.total-price').data('value', total_amount);
             $('.total-price').html($.number(total_amount, 0, ',', '.') + ' VND');
             $('.number-product').html(data.total_product);
+            if (data.total_product == 0) {
+              $('.btn-pay').hide();
+            }
             $('#total_amount').val(data.total_amount);
             $tr_product.slideUp();
             $().toastmessage('showSuccessToast', 'Đã loại bỏ sản phẩm khỏi giỏ hàng');

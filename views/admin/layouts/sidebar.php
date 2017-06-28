@@ -19,7 +19,7 @@
       </li>
       <li>
         <a href="<?= get_route('products', 'index', 'admin') ?>">
-          <i class="fa fa-coffee"></i> <span>Quản lý sản phẩm</span>
+          <i class="fa fa-product-hunt"></i> <span>Quản lý sản phẩm</span>
         </a>
       </li>
       <li>

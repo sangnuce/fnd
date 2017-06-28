@@ -21,6 +21,12 @@
             <th>Trạng thái</th>
             <td><?= $user->activated ? 'Kích hoạt' : 'Không kích hoạt' ?></td>
           </tr>
+          <tr>
+            <td colspan="2" class="text-right">
+              <a href="<?= get_route('users', 'editUser', null, array('id' => $user->id)) ?>"
+                 class="btn btn-info"><i class="fa fa-pencil"></i> Cập nhật</a>
+            </td>
+          </tr>
         </table>
 
       </div>
