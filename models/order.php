@@ -85,4 +85,37 @@ class Order
 
     return $list;
   }
+
+  static function totalAmount()
+  {
+    $db = DB::getInstance();
+    $query = $db->query("SELECT SUM(amount) AS total_amount FROM orders WHERE status=1");
+    $rs = $query->fetch();
+    return $rs['total_amount'];
+  }
+
+  static function getRecordInMonth($month)
+  {
+    $first_day = $month ? $month . '-01' : date('Y-m-01');
+
+    $list = [];
+    $db = DB::getInstance();
+    $req = $db->prepare('SELECT COUNT(*) AS num_of_orders, SUM(amount) AS total_amount, DAY(created_at) AS day
+      FROM orders WHERE status=1 AND created_at BETWEEN :first_day AND LAST_DAY(:first_day) GROUP BY DAY(created_at)');
+    $req->execute(array('first_day' => $first_day));
+
+    foreach ($req->fetchAll() as $item) {
+      $list[$item['day']]['num_of_orders'] = $item['num_of_orders'];
+      $list[$item['day']]['total_amount'] = $item['total_amount'];
+    }
+
+    $result = array();
+    for ($i = 1; $i <= date('t', strtotime($first_day)); $i++) {
+      $result['xAxis'][] = $i;
+      $result['series']['num_of_orders'][] = @$list[$i] ? intval($list[$i]['num_of_orders']) : 0;
+      $result['series']['total_amount'][] = @$list[$i] ? intval($list[$i]['total_amount']) : 0;
+    }
+
+    return $result;
+  }
 }

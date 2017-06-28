@@ -115,4 +115,17 @@ class User
     return $list;
   }
 
+  static function allUsers()
+  {
+    $list = [];
+    $db = DB::getInstance();
+    $req = $db->query('SELECT * FROM users WHERE is_admin=0');
+
+    foreach ($req->fetchAll() as $item) {
+      $list[] = new User($item['id'], $item['email'], $item['password'], $item['name'], $item['phone'], $item['activated'], $item['is_admin']);
+    }
+
+    return $list;
+  }
+
 }

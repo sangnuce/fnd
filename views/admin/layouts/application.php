@@ -20,7 +20,9 @@
     <script src="views/assets/javascripts/bootstrap.min.js"></script>
     <script src="views/assets/javascripts/app.min.js"></script>
     <script src="views/assets/javascripts/datatables.min.js"></script>
+    <script src="views/assets/javascripts/jquery.number.min.js"></script>
     <script src="views/assets/javascripts/jquery.toastmessage.js"></script>
+    <script src="views/assets/javascripts/highcharts.js"></script>
     <script src="views/assets/javascripts/custom.js"></script>
   </head>
   <body class="skin-blue sidebar-mini">

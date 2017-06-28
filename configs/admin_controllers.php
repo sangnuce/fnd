@@ -7,4 +7,5 @@ return array(
   'product_images' => ['createProductImage', 'destroyProductImage'],
   'orders' => ['index', 'showOrder', 'updateOrder'],
   'feedbacks' => ['index', 'updateFeedback'],
+  'statistics' => ['getStatistic'],
 );

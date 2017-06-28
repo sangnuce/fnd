@@ -24,7 +24,7 @@
           </a>
           <ul class="dropdown-menu">
             <li>
-              <a href="#">
+              <a href="<?= get_route('users', 'showUser', null, array('id' => current_user()->id)) ?>">
                 <i class="fa fa-user"></i>
                 <span>Trang cá nhân</span>
               </a>
