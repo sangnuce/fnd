@@ -52,3 +52,15 @@
   object-fit: cover;
   float: left;
 }
+
+.info-box-icon {
+  padding: 20px 0;
+}
+
+.chart .box-body {
+  padding: 0;
+}
+
+.highcharts-container {
+  width: 100% !important;
+}

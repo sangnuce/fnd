@@ -10,12 +10,12 @@ class Feedback
   public $status;
   public $user;
 
-  public function __construct($id, $user_id, $content, $created_at, $status)
+  public function __construct($id, $user_id, $content, $created_at = null, $status = 0)
   {
     $this->id = $id;
     $this->user_id = $user_id;
     $this->content = $content;
-    $this->created_at = $created_at;
+    $this->created_at = $created_at ? $created_at : time();
     $this->status = $status;
     $this->user = User::find($user_id);
   }
