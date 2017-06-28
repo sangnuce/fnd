@@ -225,6 +225,7 @@
         },
         success: function (result) {
           $('.number-product').html(result.total_product);
+          $('.title-number-product').prop('title', 'Có ' + result.total_product + ' sản phẩm trong giỏ hàng')
           $().toastmessage('showSuccessToast', 'Đã thêm sản phẩm vào giỏ hàng');
         }
       });

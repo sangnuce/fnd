@@ -128,4 +128,28 @@ class User
     return $list;
   }
 
+  function validate()
+  {
+    $rs = true;
+    if ($this->email) {
+      $user = User::findByEmail($this->email);
+      if ($user && $user->id != $this->id) {
+        $_SESSION['form_errors'][] = "Email đã tồn tại trong hệ thống";
+        $rs = false;
+      }
+    } else {
+      $_SESSION['form_errors'][] = "Email chưa được nhập";
+      $rs = false;
+    }
+    if (@$_POST['password']) {
+      if ($_POST['password'] != @$_POST['confirm_password']) {
+        $_SESSION['form_errors'][] = "Mật khẩu không trùng khớp";
+        $rs = false;
+      }
+    } else if (!$this->id) {
+      $_SESSION['form_errors'][] = "Mật khẩu chưa được nhập";
+      $rs = false;
+    }
+    return $rs;
+  }
 }

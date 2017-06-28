@@ -89,7 +89,7 @@
             }
           },
           title: {
-            text: 'Hoá đơn',
+            text: 'Số hoá đơn',
             style: {
               color: Highcharts.getOptions().colors[1]
             }
@@ -102,7 +102,9 @@
             }
           },
           labels: {
-            format: '{value} VND',
+            formatter: function () {
+              return $.number(this.value, 0, ',', '.') + ' VND';
+            },
             style: {
               color: Highcharts.getOptions().colors[0]
             }
@@ -118,7 +120,7 @@
               if (i === 1) {
                 rV += $.number(d.y, 0, ',', '.') + ' VND';
               } else {
-                rV += d.y + ' cái';
+                rV += d.y;
               }
               rV += '</b><br/>';
             });
@@ -126,7 +128,7 @@
           }
         },
         series: [{
-          name: 'Hoá đơn',
+          name: 'Số hoá đơn',
           type: 'column',
           data: chart_data.series.num_of_orders
         }, {

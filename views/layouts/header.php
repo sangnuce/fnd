@@ -19,9 +19,8 @@ foreach (CartItem::all() as $cartItem) {
     </div>
     <div class="collapse navbar-collapse" id="my-navbar">
       <ul class="nav navbar-nav">
-        <li><a href="<?= get_route('products', 'index') ?>">Sản phẩm</a></li>
-        <li><a href="#contact">Liên hệ</a></li>
-        <li title="Có <?= $totalCartProduct ?> sản phẩm trong giỏ hàng">
+        <li><a href="<?= get_route('products', 'index') ?>"><i class="fa fa-product-hunt"></i> Sản phẩm</a></li>
+        <li class="title-number-product" title="Có <?= $totalCartProduct ?> sản phẩm trong giỏ hàng">
           <a href="<?= get_route('carts', 'showCart') ?>" class="icon-bag-cart">
             <i class="fa fa-shopping-bag" aria-hidden="true"></i>
             <span class="number-product"><?= $totalCartProduct ?></span>
@@ -47,17 +46,17 @@ foreach (CartItem::all() as $cartItem) {
         <?php if (logged_in()) { ?>
           <li>
             <a href="<?= get_route('users', 'showUser', null, array('id' => current_user()->id)) ?>">
-              <?= current_user()->name ?>
+              <i class="fa fa-user"></i> <?= current_user()->name ?>
             </a>
           </li>
           <?php if (is_admin()) { ?>
             <li><a href="<?= root('admin') ?>"><i class="fa fa-cogs"></i> Quản lý</a></li>
           <?php } else { ?>
-            <li><a href="#" data-toggle="modal" data-target="#feedback-modal">Góp ý</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#feedback-modal"><i class="fa fa-envelope"></i> Góp ý</a></li>
           <?php } ?>
           <li><a href="<?= get_route('sessions', 'destroySession') ?>"><i class="fa fa-sign-out"></i> Đăng xuất</a></li>
         <?php } else { ?>
-          <li><a href="<?= get_route('users', 'newUser') ?>"><i class="fa fa-user"></i> Đăng ký</a></li>
+          <li><a href="<?= get_route('users', 'newUser') ?>"><i class="fa fa-user-plus"></i> Đăng ký</a></li>
           <li><a href="<?= get_route('sessions', 'newSession') ?>"><i class="fa fa-sign-in"></i> Đăng nhập</a></li>
         <?php } ?>
       </ul>
