@@ -60,6 +60,11 @@ class Category
     $db = DB::getInstance();
     $query = $db->prepare("DELETE FROM categories WHERE id=:id");
     $rs = $query->execute(array('id' => $item->id));
+    if ($rs) {
+      foreach ($item->children() as $child) {
+        Category::destroy($child);
+      }
+    }
     return $rs;
   }
 
@@ -106,6 +111,20 @@ class Category
 
     foreach ($req->fetchAll() as $item) {
       $list[] = $item['id'];
+    }
+
+    return $list;
+  }
+
+  function children()
+  {
+    $list = [];
+    $db = DB::getInstance();
+    $req = $db->prepare('SELECT * FROM categories WHERE parent_id=:parent_id');
+    $req->execute(array('parent_id' => $this->id));
+
+    foreach ($req->fetchAll() as $item) {
+      $list[] = new Category($item['id'], $item['name'], $item['parent_id']);
     }
 
     return $list;
