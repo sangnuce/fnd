@@ -31,13 +31,19 @@ class UsersController extends BaseController
     $item->phone = @$_POST['phone'];
     $item->activated = @$_POST['activated'];
     $item->is_admin = @$_POST['is_admin'];
-    $rs = User::update($item);
-    if ($rs) {
-      $_SESSION['message'] = array('class' => 'success', 'content' => 'Sửa thông tin người dùng thành công');
-      redirect_to(get_route('users', 'index', 'admin'));
+    if ($item->validate()) {
+      $rs = User::update($item);
+      if ($rs) {
+        $_SESSION['message'] = array('class' => 'success', 'content' => 'Sửa thông tin người dùng thành công');
+        redirect_to(get_route('users', 'index', 'admin'));
+      } else {
+        $_SESSION['message'] = array('class' => 'danger', 'content' => 'Sửa thông tin người dùng thất bại');
+        $data = array('title' => 'Sửa thông tin người dùng', 'user' => $item);
+        $this->render('edit', $data);
+      }
     } else {
       $_SESSION['message'] = array('class' => 'danger', 'content' => 'Sửa thông tin người dùng thất bại');
-      $data = array('title' => 'Sửa thông tin người dùng');
+      $data = array('title' => 'Sửa thông tin người dùng', 'user' => $item);
       $this->render('edit', $data);
     }
   }

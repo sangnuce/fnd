@@ -11,21 +11,21 @@
         <form action="<?= get_route('products', 'createProduct', 'admin') ?>" method="post"
               enctype="multipart/form-data">
           <div class="form-group">
-            <label>Tên sản phẩm</label>
-            <input type="text" class="form-control" name="name" value="<?= @$_POST['name'] ?>">
+            <label>Tên sản phẩm *</label>
+            <input type="text" class="form-control" name="name" value="<?= @$_POST['name'] ?>" required>
           </div>
           <div class="form-group">
-            <label>Giá bán</label>
-            <input type="number" min="0" class="form-control" name="price" value="<?= @$_POST['price'] ?>">
+            <label>Giá bán *</label>
+            <input type="number" min="0" class="form-control" name="price" value="<?= @$_POST['price'] ?>" required>
           </div>
           <div class="form-group">
-            <label>Mô tả</label>
-            <textarea class="form-control vresize" name="description"><?= @$_POST['description'] ?></textarea>
+            <label>Mô tả *</label>
+            <textarea class="form-control vresize" name="description" required><?= @$_POST['description'] ?></textarea>
           </div>
           <div class="form-group">
-            <label>Danh mục</label>
-            <select class="form-control" name="category_id" id="category_id">
-              <option value="0">Chọn danh mục</option>
+            <label>Danh mục *</label>
+            <select class="form-control" name="category_id" id="category_id" required>
+              <option value="">Chọn danh mục</option>
               <?php foreach ($categories as $category) {
                 if ($category->parent_id == 0) continue;
                 ?>

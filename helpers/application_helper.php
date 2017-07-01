@@ -119,10 +119,10 @@ function renderOrderDetails($order)
         <span class="quantity">' . $orderDetail->quantity . '</span>
       </td>
       <td class="cart-item-subtotal td-padding-top">
-        <span class="price">' . number_format($orderDetail->price, 0, ',', ' . ') . ' VND </span >
+        <span class="price">' . number_format($orderDetail->price, 0, ',', '.') . ' VND </span >
       </td >
       <td class="cart-item-subtotal td-padding-top" >
-        <span class="total-price" > ' . number_format($orderDetail->amount, 0, ',', ' . ') . ' VND </span >
+        <span class="total-price" > ' . number_format($orderDetail->amount, 0, ',', '.') . ' VND </span >
       </td >
     </tr > ';
   }

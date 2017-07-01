@@ -26,10 +26,17 @@ class CategoriesController extends BaseController
   function createCategory()
   {
     $item = new Category(NULL, @$_POST['name'], @$_POST['parent_id']);
-    $rs = Category::insert($item);
-    if ($rs) {
-      $_SESSION['message'] = array('class' => 'success', 'content' => 'Thêm mới danh mục sản phẩm thành công');
-      redirect_to(get_route('categories', 'index', 'admin'));
+    if ($item->validate()) {
+      $rs = Category::insert($item);
+      if ($rs) {
+        $_SESSION['message'] = array('class' => 'success', 'content' => 'Thêm mới danh mục sản phẩm thành công');
+        redirect_to(get_route('categories', 'index', 'admin'));
+      } else {
+        $categories = Category::getRootCategories();
+        $_SESSION['message'] = array('class' => 'danger', 'content' => 'Thêm mới danh mục sản phẩm thất bại');
+        $data = array('title' => 'Thêm mới danh mục sản phẩm', 'categories' => $categories);
+        $this->render('new', $data);
+      }
     } else {
       $categories = Category::getRootCategories();
       $_SESSION['message'] = array('class' => 'danger', 'content' => 'Thêm mới danh mục sản phẩm thất bại');
@@ -51,10 +58,17 @@ class CategoriesController extends BaseController
     $item = Category::find($_GET['id']);
     $item->name = @$_POST['name'];
     $item->parent_id = @$_POST['parent_id'];
-    $rs = Category::update($item);
-    if ($rs) {
-      $_SESSION['message'] = array('class' => 'success', 'content' => 'Sửa danh mục sản phẩm thành công');
-      redirect_to(get_route('categories', 'index', 'admin'));
+    if ($item->validate()) {
+      $rs = Category::update($item);
+      if ($rs) {
+        $_SESSION['message'] = array('class' => 'success', 'content' => 'Sửa danh mục sản phẩm thành công');
+        redirect_to(get_route('categories', 'index', 'admin'));
+      } else {
+        $categories = Category::getRootCategories();
+        $_SESSION['message'] = array('class' => 'danger', 'content' => 'Sửa danh mục sản phẩm thất bại');
+        $data = array('title' => 'Sửa danh mục sản phẩm', 'categories' => $categories, 'category' => $item);
+        $this->render('edit', $data);
+      }
     } else {
       $categories = Category::getRootCategories();
       $_SESSION['message'] = array('class' => 'danger', 'content' => 'Sửa danh mục sản phẩm thất bại');
