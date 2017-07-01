@@ -74,8 +74,8 @@ foreach (CartItem::all() as $cartItem) {
         </div>
         <div class="modal-body">
           <div class="form-group">
-            <label for="feedback_content">Nội dung</label>
-            <textarea name="content" id="feedback_content" cols="30" rows="10" class="form-control vresize"></textarea>
+            <label for="feedback_content">Nội dung *</label>
+            <textarea name="content" id="feedback_content" cols="30" rows="10" class="form-control vresize" required></textarea>
           </div>
         </div>
         <div class="modal-footer">

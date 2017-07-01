@@ -6,16 +6,16 @@
   <div class="login-box-body">
     <form action="<?= get_route('sessions', 'createSession') ?>" method="post">
       <div class="form-group">
-        <label>Email:</label>
+        <label>Email *</label>
         <div class="input-group">
-          <input type="text" class="form-control" name="email" value="<?= @$_POST['email'] ?>">
+          <input type="email" class="form-control" name="email" value="<?= @$_POST['email'] ?>" required>
           <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
         </div>
       </div>
       <div class="form-group">
-        <label>Mật khẩu:</label>
+        <label>Mật khẩu *</label>
         <div class="input-group">
-          <input type="password" class="form-control" name="password" value="<?= @$_POST['password'] ?>">
+          <input type="password" class="form-control" name="password" value="<?= @$_POST['password'] ?>" required>
           <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
         </div>
       </div>

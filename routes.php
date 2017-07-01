@@ -1,8 +1,12 @@
 <?php
   require_once('controllers/base_controller.php');
 
-  if (isset($namespace) && $namespace == 'admin') {
-    $controllers = include_once('configs/admin_controllers.php');
+  if (isset($namespace)) {
+    if ($namespace == 'admin') {
+      $controllers = include_once('configs/admin_controllers.php');
+    } else {
+      $controllers = array();
+    }
   } else {
     $controllers = include_once('configs/controllers.php');
   }
@@ -15,7 +19,7 @@
 
   function call($controller, $action) {
     global $namespace;
-    if (isset($namespace)) {
+    if (isset($namespace) && $namespace == 'admin') {
       $controller_file = 'controllers/' . $namespace . '/' . $controller . '_controller.php';
     } else {
       $controller_file = 'controllers/' . $controller . '_controller.php';

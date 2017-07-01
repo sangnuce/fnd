@@ -8,21 +8,22 @@
   <div class="box">
     <div class="box-body">
       <div class="col-md-6 col-md-offset-3">
+        <?php include_once('views/shareds/form_errors.php'); ?>
         <form action="<?= get_route('users', 'updateUser', 'admin', array('id' => $_GET['id'])) ?>" method="post">
           <div class="form-group">
-            <label>Tên người dùng</label>
+            <label>Tên người dùng *</label>
             <input type="text" class="form-control" name="name"
-                   value="<?= @$_POST['name'] ? $_POST['name'] : $user->name ?>">
+                   value="<?= @$_POST['name'] ? $_POST['name'] : $user->name ?>" required>
           </div>
           <div class="form-group">
-            <label>Email</label>
+            <label>Email *</label>
             <input type="email" class="form-control" name="email"
-                   value="<?= @$_POST['email'] ? $_POST['email'] : $user->email ?>">
+                   value="<?= @$_POST['email'] ? $_POST['email'] : $user->email ?>" required>
           </div>
           <div class="form-group">
-            <label>Số điện thoại</label>
+            <label>Số điện thoại *</label>
             <input type="text" class="form-control" name="phone"
-                   value="<?= @$_POST['phone'] ? $_POST['phone'] : $user->phone ?>">
+                   value="<?= @$_POST['phone'] ? $_POST['phone'] : $user->phone ?>" required>
           </div>
           <div class="form-group">
             <label>Vai trò</label>

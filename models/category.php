@@ -39,6 +39,18 @@ class Category
     return null;
   }
 
+  static function findByName($name)
+  {
+    $db = DB::getInstance();
+    $req = $db->prepare('SELECT * FROM categories WHERE name = :name');
+    $req->execute(array('name' => $name));
+    $item = $req->fetch();
+    if (isset($item['id'])) {
+      return new Category($item['id'], $item['name'], $item['parent_id']);
+    }
+    return null;
+  }
+
   static function insert($item)
   {
     $db = DB::getInstance();
@@ -128,5 +140,21 @@ class Category
     }
 
     return $list;
+  }
+
+  function validate()
+  {
+    $rs = true;
+    if ($this->name) {
+      $category = Category::findByName($this->name);
+      if ($category && $category->id != $this->id) {
+        $_SESSION['form_errors'][] = "Tên danh mục đã tồn tại trong hệ thống";
+        $rs = false;
+      }
+    } else {
+      $_SESSION['form_errors'][] = "Tên danh mục chưa được nhập";
+      $rs = false;
+    }
+    return $rs;
   }
 }

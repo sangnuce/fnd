@@ -8,11 +8,12 @@
   <div class="box">
     <div class="box-body">
       <div class="col-md-6 col-md-offset-3">
+        <?php include_once('views/shareds/form_errors.php'); ?>
         <form action="<?= get_route('categories', 'updateCategory', 'admin', array('id' => $_GET['id'])) ?>"
               method="post">
           <div class="form-group">
-            <label>Tên danh mục sản phẩm</label>
-            <input type="text" class="form-control" name="name" value="<?= $category->name ?>">
+            <label>Tên danh mục sản phẩm *</label>
+            <input type="text" class="form-control" name="name" value="<?= $category->name ?>" required>
           </div>
           <div class="form-group">
             <label for="parent_id">Danh mục cha</label>

@@ -16,7 +16,7 @@ class SessionsController extends BaseController
 
   public function createSession()
   {
-    $user = User::attempt($_POST['email'], $_POST['password']);
+    $user = User::attempt(@$_POST['email'], @$_POST['password']);
     if (!is_null($user) && $user->activated) {
       $_SESSION['user'] = serialize($user);
       $_SESSION['message'] = array('class' => 'success', 'content' => 'Đăng nhập thành công!');

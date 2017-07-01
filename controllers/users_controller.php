@@ -62,7 +62,6 @@ class UsersController extends BaseController
     if ($item->validate()) {
       $rs = User::update($item);
       if ($rs) {
-        $item->id = $rs;
         $_SESSION['user'] = serialize($item);
         $_SESSION['message'] = array('class' => 'success', 'content' => 'Cập nhật thông tin thành công');
         redirect_to(get_route('users', 'showUser', null, array('id' => $item->id)));
